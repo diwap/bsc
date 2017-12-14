@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="bsc.list">
+      <field name="name">bsc list</field>
+      <field name="model">bsc.bsc</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="bsc.action_window">
+      <field name="name">bsc window</field>
+      <field name="res_model">bsc.bsc</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="bsc.action_server">
+      <field name="name">bsc server</field>
+      <field name="model_id" ref="model_bsc_bsc"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="bsc" id="bsc.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="bsc.menu_1" parent="bsc.menu_root"/>
+    <menuitem name="Menu 2" id="bsc.menu_2" parent="bsc.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="bsc.menu_1_list" parent="bsc.menu_1"
+              action="bsc.action_window"/>
+    <menuitem name="Server to list" id="bsc" parent="bsc.menu_2"
+              action="bsc.action_server"/>
+    -->
+  </data>
+</odoo>
