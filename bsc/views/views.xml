@@ -57,7 +57,9 @@
     
     <!-- menu categories -->
     
-    <menuitem name="Contacts" id="bsc_menu_contact" parent="bsc_menu_root" action="bsc_action_contact"/>
+    <!-- <menuitem name="Contacts" id="bsc_menu_contact" parent="bsc_menu_root" action="bsc_action_contact"/> -->
+
+    <menuitem name="Contacts" id="bsc_menu_contact" parent="bsc_menu_root" action="base.action_partner_form"/>
     
     <!-- actions -->
     
