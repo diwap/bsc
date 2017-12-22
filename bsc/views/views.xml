@@ -53,7 +53,7 @@
 
     <!-- Top menu item -->
     
-    <menuitem name="BSC" id="bsc_menu_root"/>
+    <menuitem name="BSC" id="bsc_menu_root" web_icon="bsc,static/description/icon.png"/>
     
     <!-- menu categories -->
     

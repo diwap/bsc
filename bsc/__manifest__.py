@@ -3,10 +3,12 @@
     'name': "bsc",
 
     'summary': """
-        Balance Score Card is an indicator""",
+        Strategic Planning and Management System""",
 
     'description': """
-        Balance Score Card`
+        BSC refers to Balance Score Card. The balanced scorecard is a strategy performance management tool – a semi-standard structured report,
+        supported by design methods and automation tools, that can be used by managers to keep track of the execution of activities by the 
+        staff within their control and to monitor the consequences arising from these actions.
     """,
 
     'author': "Diwakar Pandey",
@@ -17,6 +19,7 @@
     # for the full list
     'category': 'management',
     'version': '11.1',
+    'application': True,
 
     # any module necessary for this one to work correctly
     'depends': ['base'],
@@ -25,5 +28,6 @@
     'data': [
         'security/ir.model.access.csv',
         'views/views.xml',
+        'views/contact_ext.xml'
     ],
 }
