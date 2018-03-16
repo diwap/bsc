@@ -14,7 +14,7 @@ class Bsc(models.Model):
 	]
 
 	name = fields.Many2one('res.partner',"Name")
-	category = fields.Selection(CATEGORY_SELECTION, string="Category", readonly=True, default='financial')
+	category = fields.Selection(CATEGORY_SELECTION, string="Category", default='financial')
 	objective_bsc_ids = fields.One2many('bsc.objective','objective_bsc_ids')
 
 class Objective(models.Model):
@@ -36,7 +36,7 @@ class Objective(models.Model):
     #                 AND part_rel.res_partner_id = %s
     #     """
 
-	title = fields.Char("Title")
+	title = fields.Char("Title", required=True)
 	owner = fields.Many2one('res.partner', "Owner")
 	objective_bsc_ids = fields.Many2one('bsc.bsc',"Objectives")
 	recommendation_objective_ids = fields.One2many('bsc.recommendation','recommendation_objective_ids')

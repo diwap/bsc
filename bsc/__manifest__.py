@@ -28,6 +28,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/views.xml',
-        'views/contact_ext.xml'
+        'views/contact_ext.xml',
+        'views/bsc_objective.xml'
     ],
 }

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
   <data>
     <!-- explicit list view definition -->
@@ -8,6 +9,7 @@
       <field name="arch" type="xml">
         <tree>
           <field name="name"/>
+          <field name="category"/>
         </tree>
       </field>
     </record>
@@ -20,7 +22,19 @@
           <sheet>
             <group>
               <field name="name"/>
+              <field name="category"/>
             </group>
+            <notebook>
+              <page string="Objectives">
+                <field name="objective_bsc_ids">
+                  <tree>
+                    <field name="title"/>
+                    <field name="owner"/>
+                    <field name="description"/>
+                  </tree>
+                </field>
+              </page>
+            </notebook>
           </sheet>
         </form>
       </field>
@@ -53,13 +67,14 @@
 
     <!-- Top menu item -->
     
-    <menuitem name="BSC" id="bsc_menu_root" web_icon="bsc,static/description/icon.png"/>
+    <menuitem name="BSC" id="bsc_menu_root" web_icon="bsc,static/description/icon.png" sequence="1"/>
     
     <!-- menu categories -->
     
     <!-- <menuitem name="Contacts" id="bsc_menu_contact" parent="bsc_menu_root" action="bsc_action_contact"/> -->
 
-    <menuitem name="Contacts" id="bsc_menu_contact" parent="bsc_menu_root" action="base.action_partner_form"/>
+    <menuitem name="Contacts" id="bsc_menu_contact" parent="bsc_menu_root" action="base.action_partner_form" sequence="1"/>
+    <menuitem name="BSC" id="bsc_menu_bsc" parent="bsc_menu_root" action="bsc_action_contact" sequence="2"/>
     
     <!-- actions -->
     
