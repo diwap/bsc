@@ -26,6 +26,7 @@
 
     # always loaded
     'data': [
+        'security/bsc_security.xml',
         'security/ir.model.access.csv',
         'views/views.xml',
         'views/contact_ext.xml',
