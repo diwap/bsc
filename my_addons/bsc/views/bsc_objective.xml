@@ -27,6 +27,24 @@
                                 <field name="owner" placeholder="Owner Name"/>
                             </div>
                         </div>
+                        <group>
+                            <group>
+                                <field name="objective_bsc_ids"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="collaborator_ids" widget="many2many_tags"/>
+                            <field name="analysis"/>
+                            <field name="description"/>
+                        </group>
+                        <notebook>
+                            <page string="Measure">
+                                <field name="measure_objective_ids"/>
+                            </page>
+                            <page string="Recommendation">
+                                <field name="recommendation_objective_ids"/>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>

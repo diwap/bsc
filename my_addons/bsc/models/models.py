@@ -38,7 +38,7 @@ class Objective(models.Model):
 
 	title = fields.Char("Title", required=True)
 	owner = fields.Many2one('res.partner', "Owner")
-	objective_bsc_ids = fields.Many2one('bsc.bsc',"Objectives")
+	objective_bsc_ids = fields.Many2one('bsc.bsc',"BSC")
 	recommendation_objective_ids = fields.One2many('bsc.recommendation','recommendation_objective_ids')
 	analysis = fields.Text("Analysis")
 	description = fields.Text("Description")

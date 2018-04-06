@@ -3,7 +3,7 @@
   <data>
     <!-- explicit list view definition -->
     
-    <record model="ir.ui.view" id="bsc_tree_contact">
+    <record model="ir.ui.view" id="bsc_tree_bsc">
       <field name="name">BSC Contact</field>
       <field name="model">bsc.bsc</field>
       <field name="arch" type="xml">
@@ -14,7 +14,7 @@
       </field>
     </record>
     
-    <record model="ir.ui.view" id="bsc_form_contact">
+    <record model="ir.ui.view" id="bsc_form_bsc">
       <field name="name">BSC Contact</field>
       <field name="model">bsc.bsc</field>
       <field name="arch" type="xml">
@@ -42,10 +42,20 @@
 
     <!-- actions opening views on models -->
     
-    <record model="ir.actions.act_window" id="bsc_action_contact">
+    <!-- <record model="ir.actions.act_window" id="bsc_action_contact">
       <field name="name">BSC</field>
       <field name="res_model">bsc.bsc</field>
       <field name="view_mode">tree,form</field>
+    </record> -->
+
+    <record id="action_bsc_bsc" model="ir.actions.act_window">
+        <field name="name">BSC</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">bsc.bsc</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="view_id" eval="view_holiday_status_normal_tree"/> -->
+        <!-- <field name="search_view_id" ref="view_bsc_objective_filter"/> -->
     </record>
     
 
@@ -74,7 +84,7 @@
     <!-- <menuitem name="Contacts" id="bsc_menu_contact" parent="bsc_menu_root" action="bsc_action_contact"/> -->
 
     <menuitem name="Contacts" id="bsc_menu_contact" parent="bsc_menu_root" action="base.action_partner_form" sequence="1"/>
-    <menuitem name="BSC" id="bsc_menu_bsc" parent="bsc_menu_root" action="bsc_action_contact" sequence="2"/>
+    <menuitem name="BSC" id="bsc_menu_bsc" parent="bsc_menu_root" action="action_bsc_bsc" sequence="2"/>
     
     <!-- actions -->
     
