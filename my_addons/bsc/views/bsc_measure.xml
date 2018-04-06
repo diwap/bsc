@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="bsc_tree_measure">
+            <field name="name">BSC Measure</field>
+            <field name="model">bsc.measure</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="title"/>
+                    <field name="owner"/>
+                    <field name="measure_objective_ids"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="bsc_form_contact">
+            <field name="name">BSC Measure</field>
+            <field name="model">bsc.measure</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="title" default_focus="1" placeholder="Title"/>
+                            </h1>
+                            <div class="o_row">
+                                <field name="owner" placeholder="Owner Name"/>
+                            </div>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="measure_objective_ids"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="collaborator_ids" widget="many2many_tags"/>
+                            <field name="analysis"/>
+                            <field name="description"/>
+                        </group>
+                        <notebook>
+                            <page string="Recommendation">
+                                <field name="recommendation_measure_ids"/>
+                            </page>
+                            <page string="Measure Data">
+                                <field name="measure_data_measure_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_bsc_objective_filter" model="ir.ui.view">
+            <field name="name">bsc.objective.filter</field>
+            <field name="model">bsc.objective</field>
+            <field name="arch" type="xml">
+                <search string="Search BSC Objective">
+                    <!-- <field name=""/> -->
+                    <field name="owner"/>
+                    <group expand="0" string="Group By">
+                        <!-- <filter name="group_title" string="" context="{'group_by':''}"/>
+                        <separator/> -->
+                        <filter name="group_owner" string="Owner" context="{'group_by':'owner'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="action_bsc_measure" model="ir.actions.act_window">
+            <field name="name">BSC Measure</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bsc.measure</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <!-- <field name="view_id" eval="view_holiday_status_normal_tree"/> -->
+            <field name="search_view_id" ref="view_bsc_objective_filter"/>
+        </record>
+        <menuitem id="menu_bsc_measure"
+                name="Measure"
+                parent="bsc_menu_root" 
+                sequence="3" 
+                action="action_bsc_measure"/>
+    </data>
+</odoo>
