@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="bsc_tree_action">
+            <field name="name">BSC Action</field>
+            <field name="model">bsc.action</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="owner"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="bsc_form_action">
+            <field name="name">BSC Action</field>
+            <field name="model">bsc.action</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Title"/>
+                            </h1>
+                            <div class="o_row">
+                                <field name="owner" placeholder="Owner Name"/>
+                            </div>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="action_initiative_ids"/>
+                                <field name="action_milestone_ids"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="collaborator_ids" widget="many2many_tags"/>
+                            <field name="description"/>
+                        </group>
+                        <!-- <notebook>
+                            <page string="Measure">
+                                <field name="measure_objective_ids"/>
+                            </page>
+                            <page string="Recommendation">
+                                <field name="recommendation_objective_ids"/>
+                            </page>
+                        </notebook> -->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="bsc_form_action_initiative">
+            <field name="name">BSC Action</field>
+            <field name="model">bsc.action</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Title"/>
+                            </h1>
+                            <div class="o_row">
+                                <field name="owner" placeholder="Owner Name"/>
+                            </div>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="action_initiative_ids"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="collaborator_ids" widget="many2many_tags"/>
+                            <field name="description"/>
+                        </group>
+                        <!-- <notebook>
+                            <page string="Measure">
+                                <field name="measure_objective_ids"/>
+                            </page>
+                            <page string="Recommendation">
+                                <field name="recommendation_objective_ids"/>
+                            </page>
+                        </notebook> -->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="bsc_form_action_milestone">
+            <field name="name">BSC Action</field>
+            <field name="model">bsc.action</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Title"/>
+                            </h1>
+                            <div class="o_row">
+                                <field name="owner" placeholder="Owner Name"/>
+                            </div>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="action_milestone_ids"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="collaborator_ids" widget="many2many_tags"/>
+                            <field name="description"/>
+                        </group>
+                        <!-- <notebook>
+                            <page string="Measure">
+                                <field name="measure_objective_ids"/>
+                            </page>
+                            <page string="Recommendation">
+                                <field name="recommendation_objective_ids"/>
+                            </page>
+                        </notebook> -->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_bsc_action_filter" model="ir.ui.view">
+            <field name="name">bsc.action.filter</field>
+            <field name="model">bsc.action</field>
+            <field name="arch" type="xml">
+                <search string="Search BSC Action">
+                    <!-- <field name=""/> -->
+                    <field name="owner"/>
+                    <group expand="0" string="Group By">
+                        <!-- <filter name="group_title" string="" context="{'group_by':''}"/>
+                        <separator/> -->
+                        <filter name="group_owner" string="Owner" context="{'group_by':'owner'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="action_bsc_action" model="ir.actions.act_window">
+            <field name="name">BSC Action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bsc.action</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <!-- <field name="view_id" eval="bsc_form_action"/> -->
+            <field name="search_view_id" ref="view_bsc_action_filter"/>
+        </record>
+        <menuitem id="menu_bsc_action"
+                name="Action" 
+                parent="bsc_menu_root" 
+                sequence="3" 
+                action="action_bsc_action"/>
+    </data>
+</odoo>

@@ -52,7 +52,7 @@ class Measure(models.Model):
 	title = fields.Char("Title")
 	analysis = fields.Text("Analysis")
 	recommendation_measure_ids = fields.One2many('bsc.recommendation','recommendation_measure_ids')
-	measure_data_measure_ids = fields.One2many('bsc.measure_data','measure_data_measue_ids')
+	measure_data_measure_ids = fields.One2many('bsc.measuredata','measure_data_measure_ids')
 	owner = fields.Many2one('res.partner',"Owner")
 	collaborator_ids = fields.Many2many('res.partner','bsc_measure_res_partner_rel', string="Collaborators")
 	description = fields.Text("Description")
@@ -64,7 +64,7 @@ class Initiative(models.Model):
 
 	title = fields.Char("Title")
 	measure_id = fields.Many2one('bsc.measure',"Measure")
-	owner = fields.Many2one('res.parner',"Owner")
+	owner = fields.Many2one('res.partner',"Owner")
 	collaborator_ids = fields.Many2many('res.partner','bsc_initiative_res_partner_rel', string="Collaborators")
 	budget = fields.Float("Budget")
 	description = fields.Text("Description")
@@ -89,9 +89,9 @@ class Recommendation(models.Model):
 	recommendation_initiative_ids = fields.Many2one('bsc.initiative',"Recommendation")
 
 class MeasureData(models.Model):
-	_name = 'bsc.measure_data'
+	_name = 'bsc.measuredata'
 
-	measure_data_measue_ids = fields.Many2one('bsc.measure',"Measure Data")
+	measure_data_measure_ids = fields.Many2one('bsc.measure',"Measure Data")
 	period = fields.Date("Period")
 	actual = fields.Float("Actual")
 	target = fields.Float("Target")
@@ -104,7 +104,7 @@ class Milestone(models.Model):
 
 	title = fields.Char("Title")
 	milestone_initiative_ids = fields.Many2one('bsc.initiative',"Milestone")
-	owner = fields.Many2one('res.parner',"Owner")
+	owner = fields.Many2one('res.partner',"Owner")
 	percent_complete = fields.Float("Percent Complete")
 	analysis = fields.Text("Analysis")
 	recommendation = fields.Text("Recommendation")
@@ -124,9 +124,9 @@ class Action(models.Model):
 	_rec_name = 'name'
 
 	name = fields.Char("Name")
-	action_initiative_ids = fields.Many2one('bsc.initiative',"Action")
-	action_milestone_ids = fields.Many2one('bsc.milestone',"Action")
-	owner = fields.Many2one('res.parner',"Owner")
+	action_initiative_ids = fields.Many2one('bsc.initiative',"Initiative Action")
+	action_milestone_ids = fields.Many2one('bsc.milestone',"Milestone Action")
+	owner = fields.Many2one('res.partner',"Owner")
 	collaborator_ids = fields.Many2many('res.partner','bsc_action_res_partner_rel', string="Collaborators")
 	description = fields.Text("Description")
 	comment = fields.Text("Comment")

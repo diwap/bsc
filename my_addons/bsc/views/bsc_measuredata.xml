@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="bsc_tree_measuredata">
+            <field name="name">BSC Measuredata</field>
+            <field name="model">bsc.measuredata</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="measure_data_measure_ids"/>
+                    <field name="period"/>
+                    <field name="actual"/>
+                    <field name="target"/>
+                    <field name="variance"/>
+                    <field name="percent_of_target"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="bsc_form_measuredata">
+            <field name="name">BSC Measuredata</field>
+            <field name="model">bsc.measuredata</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="measure_data_measure_ids"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="period"/>
+                                <field name="actual"/>
+                            </group>
+                            <group>
+                                <field name="target"/>
+                                <field name="variance"/>
+                                <field name="percent_of_target"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="view_bsc_measuredata_filter" model="ir.ui.view">
+            <field name="name">bsc.measuredata.filter</field>
+            <field name="model">bsc.measuredata</field>
+            <field name="arch" type="xml">
+                <search string="Search BSC Measuredata">
+                    <!-- <field name=""/> -->
+                    <field name="measure_data_measure_ids"/>
+                    <group expand="0" string="Group By">
+                        <!-- <filter name="group_title" string="" context="{'group_by':''}"/>
+                        <separator/> -->
+                        <filter name="group_measure" string="Measure" context="{'group_by':'measure_data_measure_ids'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        <record id="action_bsc_measuredata" model="ir.actions.act_window">
+            <field name="name">BSC Measure data</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bsc.measuredata</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <!-- <field name="view_id" eval="view_holiday_status_normal_tree"/> -->
+            <field name="search_view_id" ref="view_bsc_measuredata_filter"/>
+        </record>
+        <menuitem id="menu_bsc_measuredata"
+                name="Measure Data" 
+                parent="bsc_menu_root" 
+                sequence="3" 
+                action="action_bsc_measuredata"/>
+    </data>
+</odoo>

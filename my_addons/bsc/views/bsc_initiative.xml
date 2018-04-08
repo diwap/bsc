@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <record model="ir.ui.view" id="bsc_tree_objective">
-            <field name="name">BSC Objectives</field>
-            <field name="model">bsc.objective</field>
+        <record model="ir.ui.view" id="bsc_tree_initiative">
+            <field name="name">BSC Initiative</field>
+            <field name="model">bsc.initiative</field>
             <field name="arch" type="xml">
                 <tree>
                     <field name="title"/>
                     <field name="owner"/>
-                    <field name="objective_bsc_ids"/>
-                    <field name="description"/>
+                    <field name="percent_complete" widget="progress"/>
                 </tree>
             </field>
         </record>
-        <record model="ir.ui.view" id="bsc_form_objective">
-            <field name="name">BSC Objectives</field>
-            <field name="model">bsc.objective</field>
+        <record model="ir.ui.view" id="bsc_form_initiative">
+            <field name="name">BSC Initiative</field>
+            <field name="model">bsc.initiative</field>
             <field name="arch" type="xml">
                 <form>
                     <sheet>
@@ -29,7 +28,15 @@
                         </div>
                         <group>
                             <group>
-                                <field name="objective_bsc_ids"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="measure_id"/>
+                                <field name="percent_complete"/>
+                                <field name="completed_date"/>
                             </group>
                         </group>
                         <group>
@@ -38,22 +45,25 @@
                             <field name="description"/>
                         </group>
                         <notebook>
-                            <page string="Measure">
-                                <field name="measure_objective_ids"/>
-                            </page>
                             <page string="Recommendation">
-                                <field name="recommendation_objective_ids" context="{'form_view_ref': 'bsc.bsc_form_recommendation_objective'}"/>
+                                <field name="recommendation_initiative_ids" context="{'form_view_ref': 'bsc.bsc_form_recommendation_initiative'}"/>
+                            </page>
+                            <page string="Milestone">
+                                <field name="milestone_initiative_ids"/>
+                            </page>
+                            <page string="Action">
+                                <field name="action_initiative_ids" context="{'form_view_ref': 'bsc.bsc_form_action_initiative'}"/>
                             </page>
                         </notebook>
                     </sheet>
                 </form>
             </field>
         </record>
-        <record id="view_bsc_objective_filter" model="ir.ui.view">
-            <field name="name">bsc.objective.filter</field>
-            <field name="model">bsc.objective</field>
+        <record id="view_bsc_initiative_filter" model="ir.ui.view">
+            <field name="name">bsc.initiative.filter</field>
+            <field name="model">bsc.initiative</field>
             <field name="arch" type="xml">
-                <search string="Search BSC Objective">
+                <search string="Search BSC Initiative">
                     <!-- <field name=""/> -->
                     <field name="owner"/>
                     <group expand="0" string="Group By">
@@ -64,19 +74,19 @@
                 </search>
             </field>
         </record>
-        <record id="action_bsc_objective" model="ir.actions.act_window">
-            <field name="name">BSC Objective</field>
+        <record id="action_bsc_initiative" model="ir.actions.act_window">
+            <field name="name">BSC Initiative</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">bsc.objective</field>
+            <field name="res_model">bsc.initiative</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <!-- <field name="view_id" eval="view_holiday_status_normal_tree"/> -->
-            <field name="search_view_id" ref="view_bsc_objective_filter"/>
+            <field name="search_view_id" ref="view_bsc_initiative_filter"/>
         </record>
-        <menuitem id="menu_bsc_objective"
-                name="Objective" 
+        <menuitem id="menu_bsc_initiative"
+                name="Initiative"
                 parent="bsc_menu_root" 
                 sequence="3" 
-                action="action_bsc_objective"/>
+                action="action_bsc_initiative"/>
     </data>
 </odoo>
