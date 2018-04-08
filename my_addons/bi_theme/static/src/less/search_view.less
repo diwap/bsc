@@ -1,0 +1,36 @@
+.o_searchview {
+    border-bottom: 1px solid @odoo-brand-secondary;
+
+    .o_searchview_facet {
+        @media (max-width: @screen-xs-max) {
+            .o-flex-flow(row, wrap);
+        }
+
+        border: 1px solid @odoo-brand-secondary;
+        background: @odoo-brand-lightsecondary;
+        color: @odoo-brand-secondary;
+
+        .o_searchview_facet_label {
+            background-color: @odoo-brand-primary;
+        }
+
+        .o_facet_remove:hover {
+            color: darken(@odoo-brand-secondary, 20%);
+        }
+    }
+
+	.o_searchview_input {
+        border: none;
+        outline: none;
+    }
+    .o_searchview_more {
+        .o-position-absolute(@top: 4px, @right: 0);
+    }
+    .o_searchview_autocomplete li.o-selection-focus {
+        background-color: @table-bg-accent;
+    }
+}
+
+.o_search_options {
+	margin: auto 0;
+}

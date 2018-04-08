@@ -1,0 +1,260 @@
+.form-break-table() {
+    display: block;
+    margin-bottom: @odoo-form-spacing-unit * 4;
+
+    > tbody {
+        display: block;
+
+        > tr {
+            .o-flex-display();
+            .o-flex-flow(row, wrap);
+
+            > td {
+                .o-flex(1, 0, auto);
+                display: block;
+                max-width: 100%;
+                padding: 0;
+
+                width: auto!important;  // !important is required to override the width computed in JS
+                &.o_td_label {
+                    width: 94%!important; // The label must be on its own line except if the form field is small enough (checkbox)
+                    line-height: @odoo-label-font-size-factor;
+                }
+
+                .o_form_field {
+                    margin-bottom: @odoo-form-spacing-unit * 2;
+                    &.o_form_field_boolean {
+                        margin-right: 0;
+                    }
+                }
+
+                .o_form_input_dropdown {
+                    width: auto;
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.o_form_view {
+    @media (min-width: @screen-sm-min) {
+        .o-flex-display();
+        .o-flex-flow(column, nowrap);
+        min-height: 100%;
+    }
+    &.o_form_nosheet {
+        display: block;
+        .o-webclient-padding(@top: @odoo-sheet-vpadding, @bottom: @odoo-sheet-vpadding);
+
+        .o_form_statusbar {
+            margin: -@odoo-sheet-vpadding -@odoo-horizontal-padding 0 -@odoo-horizontal-padding;
+        }
+    }
+
+    // Sheet
+    .o_form_sheet_bg {
+        .o-flex(1, 0, auto);
+        padding-bottom: 8px; // keep the padding-bottom in mobile to separate chatter from sheet
+        @media (min-width: @screen-sm-min) {
+            padding: 8px 0;
+        }
+        .o_form_sheet {
+            .container;
+            .o-webclient-padding(@top: 24px, @bottom: 24px);
+        }
+    }
+
+    // Header containing status/workflow buttons
+    .o_form_statusbar {
+        .o-flex(0, 0, auto);
+        .o-flex-display();
+        .o-justify-content(space-between);
+
+        padding-left: @odoo-horizontal-padding;
+
+        > .o_statusbar_buttons, > .o_statusbar_status {
+            .o-flex-display();
+            .o-align-items(center);
+            .o-align-content(space-around);
+        }
+
+        > .o_form_field {
+            .o-align-self(center);
+            margin-bottom: 0px;
+        }
+
+        > .o_statusbar_buttons {
+            .o-flex-flow(row, wrap);
+
+            > .btn {
+                margin: 2px 3px 2px 0;
+            }
+        }
+
+        > .o_statusbar_status {
+            .o-flex-flow(row-reverse, wrap-reverse);
+            .o-align-self(stretch);
+            .o-align-items(stretch);
+            overflow-x: hidden; // to prevent horizontal scroll due to last arrow
+        }
+
+        // Touch device mode
+        > .o_statusbar_buttons > .btn-group {
+            > .dropdown-toggle {
+                &:after {
+                    .o-caret-down();
+                    margin-left: @odoo-form-spacing-unit;
+                }
+            }
+
+            > .dropdown-menu {
+                padding: 5px 0 2px 0;
+                min-width: 100px;
+
+                > li > .btn {
+                    min-width: 100%;
+                    margin-bottom: 3px;
+                }
+            }
+        }
+    }
+
+    // Button box
+    .oe_button_box {
+        margin: -@odoo-sheet-vpadding -@odoo-horizontal-padding @odoo-sheet-vpadding -@odoo-horizontal-padding;
+        text-align: right;
+
+        > .oe_stat_button, > .o_dropdown_more {
+            .o-flex(0, 0, auto);
+            width: percentage(1/3); // Adapt the number of visible buttons for each screen width
+            @media (min-width: @screen-sm-min) {
+                width: percentage(1/5);
+            }
+            @media (min-width: @screen-md-min) {
+                width: percentage(1/7);
+            }
+            @media (min-width: @screen-lg-min) {
+                width: percentage(1/8);
+            }
+        }
+
+        > .o_dropdown_more {
+            .o-position-absolute(100%, 0);
+            min-width: 0;
+            > li > .oe_stat_button {
+                width: 100%;
+            }
+        }
+    }
+
+    // Title & avatar
+    .oe_title {
+        @media (max-width: @screen-xxs-max) {
+            word-break: break-all;
+        }
+        @media (min-width: @screen-xs-min) {
+            padding-right: @odoo-innergroup-rpadding;
+        }
+    }
+    .oe_avatar {
+        margin-bottom: 10px;
+
+        > img {
+            max-width: @odoo-avatar-size;
+            max-height: @odoo-avatar-size;
+        }
+
+        + .oe_title {
+            padding-right: @odoo-avatar-size + 10;
+        }
+    }
+
+    // Groups
+    .o_group {
+        // all groups take width 100% in mobile
+        .o-generate-groups(@odoo-form-group-cols);
+        .o-generate-groups(@n, @i: 1) when (@i =< @n) {
+            .o_group_col_@{i} {
+                @media (max-width: @screen-sm-max) {
+                    width: 100%;
+                }
+            }
+            .o-generate-groups(@n, @i + 1);
+        }
+
+        &.o_inner_group {
+            > tbody > tr > td {
+                padding: 0 @odoo-innergroup-rpadding 0 0;
+           }
+            @media (max-width: @screen-xxs-max) { // Not xs max to keep sm layout a bit further
+                .form-break-table();
+            }
+        }
+
+        .o_form_field {
+            @media (min-width: @screen-xs-min) {
+                &.o_text_overflow {
+                    width: 1px!important; // hack to make the table layout believe it is a small element (so that the table does not grow too much) ...
+                    min-width: 100%;      // ... but in fact it takes the whole table space
+                }
+            }
+        }
+
+        @media (min-width: @screen-xs-min) {
+            .o_form_label {
+                margin-bottom: @odoo-form-spacing-unit;
+            }
+        }
+    }
+
+    // Labels
+    .o_form_label {
+        @media (max-width: @screen-xxs-max) {
+            margin-top: 3px;
+
+            &.o_form_label_empty {
+                display: none;
+            }
+        }
+    }
+
+    // Chatter
+    .oe_chatter {
+        .o-flex(1000, 0, auto);
+        .o-webclient-padding(@top: 16px, @bottom: 16px);
+        .container;
+    }
+
+    // Kanban selection
+    .o_form_sheet > .o_kanban_selection {
+        float: right;
+
+        .dropdown-menu {
+            right: 0;
+            left: auto;
+        }
+    }
+}
+
+// Overriden style when form view in modal
+.modal .modal-dialog {
+    .o_form_view {
+        @media (max-width: @screen-sm-max) {
+            .o_group.o_inner_group > tbody > tr > td.o_td_label {
+                min-width: 100px;
+            }
+        }
+    }
+    &.modal-sm .o_form_view {
+        .o_group {
+            .form-break-table();
+        }
+    }
+}
+
+@media print {
+    .o_form_statusbar {
+        display: none !important;
+    }
+}

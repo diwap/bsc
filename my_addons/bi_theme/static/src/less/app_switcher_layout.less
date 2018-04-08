@@ -1,0 +1,52 @@
+
+.o_application_switcher {
+    height: 100%;
+    overflow: auto;
+    .o-flex-display();
+    .o-flex-flow(column, nowrap);
+    .o-align-items(center);
+
+    .o_application_switcher_scrollable {
+        .o-flex-display();
+        .o-flex-flow(column, nowrap);
+        .o-align-items(center);
+        .o-flex(1, 0, auto);
+        width: 100%;
+        max-width: @screen-sm-min;
+        
+        .o_apps {
+            .o-flex(0, 0, auto);
+            width: 100%;
+            max-width: @screen-sm-min;
+            .clearfix();
+
+            .o_app {
+                float: left;
+                margin: 0 1.5% 15px;
+                width: 13.66%; // +3% margin = 6 apps per line
+                @media (max-width: @screen-xs-max) {
+                    width: 22%; // +3% margin = 4 apps per line
+                }
+            }
+        }
+        .o_menuitems {
+            width: 100%;
+
+            .o-flex(1, 0, auto);
+            .o_menuitem {
+                @media (max-width: @screen-xs-max) {
+                    padding: 6px;
+                }
+            }
+            
+        }
+        .o_no_results {
+            .o-flex(1, 0, auto);
+        }
+    }
+    .o_application_switcher_footer {
+        .o-flex-display();
+        .o-flex(1, 0, auto);
+        align-items: flex-end;
+    }
+}

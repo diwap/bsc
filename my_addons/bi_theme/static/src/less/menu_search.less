@@ -1,0 +1,50 @@
+.o_menu_search {
+    .o-flex-display();
+    .o-flex(0, 0, auto); 
+    width: 100%;
+    max-width: @screen-sm-min;
+    height: @odoo-navbar-height;
+    background-color: fade(lightgrey, 30);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.1);
+    @media (min-width: @screen-md-min) {
+        margin-top: 25px;
+    }
+    margin-bottom: 8px;
+    align-items: center;
+    border-radius: 4px;
+
+    &.o_bar_hidden {
+        opacity: 0;
+    }
+
+    .o_menu_search_icon {
+        .o-flex(0, 0, auto);
+        padding: 10px;
+        font-size: 28px;
+        color: white;
+    }
+
+    .o_menu_search_input {
+        .o-flex(1, 0, 0);
+        border: none;
+        padding: 5px;
+        background-color: rgba(0, 0, 0, 0);
+        color: white;
+        &:focus {
+            outline: none;
+        }
+        .o-placeholder() { // Rules below need to be separeted. Otherwise all browsers will discard the whole rule.
+            color: white;
+            opacity: 0.5;
+        }
+        &::-webkit-input-placeholder { // WebKit, Blink, Edge
+            .o-placeholder();
+        }
+        &::-moz-placeholder { // Mozilla Firefox 19+
+            .o-placeholder();
+        }
+        &:-ms-input-placeholder { // Internet Explorer 10-11
+            .o-placeholder();
+        }
+    }
+}
