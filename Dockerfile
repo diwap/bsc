@@ -17,7 +17,7 @@ RUN set -x; \
             xz-utils
 
 # Install Odoo
-ENV ODOO_VERSION 10.0
+ENV ODOO_VERSION 11.0
 ENV ODOO_RELEASE 20180122
 RUN set -x; \
         curl -o odoo.deb -SL http://nightly.odoo.com/${ODOO_VERSION}/nightly/deb/odoo_${ODOO_VERSION}.${ODOO_RELEASE}_all.deb \
