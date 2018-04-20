@@ -1,0 +1,341 @@
+.o_form_view {
+    // Sheet
+    .o_form_sheet_bg {
+        background-color: @odoo-webclient-background-color;
+        .o_form_sheet {
+            background-color: @odoo-view-background-color;
+        }
+    }
+
+    // Avatar
+    .oe_avatar {
+        float: right;
+
+        > img {
+            vertical-align: top;
+            border: 1px solid @odoo-main-color-muted;
+        }
+    }
+
+    // Header containing status/workflow buttons
+    .o_form_statusbar {
+        background-color: @odoo-view-background-color;
+        position: relative; // Needed for the "More" dropdown
+        border-bottom: 1px solid @odoo-brand-secondary;
+
+        > .o_statusbar_status {
+            > .o_arrow_button {
+                min-height: @odoo-statusbar-height;
+                font-size: 11px;
+                font-weight: bold;
+                position: relative;
+                padding-left: @odoo-statusbar-arrow-width*2;
+                color: @odoo-main-color-muted;
+                .o-transition(all, 0.2s);
+
+                &:first-child {
+                    padding-right: @odoo-horizontal-padding; // Compensate container padding
+                }
+                &:last-child {
+                    padding-left: @odoo-horizontal-padding - 1;
+                    border-left: 1px solid @odoo-brand-lightsecondary;
+                }
+
+                &:active {
+                    box-shadow: none;
+                }
+
+                &.disabled {
+                    opacity: 1.0;
+                    cursor: auto;
+                    pointer-events: auto;
+                    color: @odoo-main-text-color;
+                    border-left: 1px solid @odoo-brand-lightsecondary;
+                }
+
+                &:before, &:after {
+                    content: " ";
+                    display: block;
+                    .o-position-absolute(0, -@odoo-statusbar-arrow-width + 1);
+
+                    border-top: @odoo-statusbar-height/2 solid transparent;
+                    border-bottom: @odoo-statusbar-height/2 solid transparent;
+                    border-right: none;
+                    border-left: @odoo-statusbar-arrow-width solid @odoo-view-background-color;
+                    .o-transition(border, 0.2s);
+                    -moz-transform: scale(0.9999); // Smooth the triangle on firefox
+                }
+
+                &:not(.disabled) {
+                    &:hover, &:active, &:focus {
+                        color: white;
+                        background-color: @odoo-brand-optional;
+                        &:after {
+                            border-left-color: @odoo-brand-optional;
+                        }
+                    }
+                }
+
+                &:before {
+                    right: -@odoo-statusbar-arrow-width;
+                    border-left-color: @odoo-brand-lightsecondary;
+                }
+
+                &.btn-primary.disabled {
+                    color: @text-color;
+                    background-color: @odoo-statusbar-disabled-bg;
+
+                    &:before {
+                        border-left-color: @odoo-brand-lightsecondary;
+                    }
+                    &:after {
+                        border-left-color: @odoo-statusbar-disabled-bg;
+                    }
+                }
+            }
+            .o-status-more {
+                .o-position-absolute(100%, 0);
+                min-width: 100px;
+                > li > button {
+                    width: 100%;
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+    // Button box
+    .oe_button_box {
+        position: relative;
+        background-color: @odoo-brand-lightsecondary;
+
+        &.o_full .oe_stat_button:not(.o_form_invisible) ~ .oe_stat_button {
+            border-left: 1px solid @odoo-webclient-background-color;
+        }
+        &.o_not_full .oe_stat_button {
+            border-left: 1px solid @odoo-webclient-background-color;
+        }
+
+        .btn.oe_stat_button {
+            height: @odoo-statbutton-height;
+            padding: @odoo-statbutton-vpadding @odoo-statbutton-spacing @odoo-statbutton-vpadding 0; // padding-left will be achieved through margin-left of content
+            text-align: left;
+            background-color: transparent;
+            &:hover, &:focus {
+                background-color: darken(@odoo-brand-lightsecondary, 10%);
+                color: inherit;
+            }
+
+            > .o_button_icon {
+                margin-left: @odoo-statbutton-spacing; // To create the button padding left (firefox bug)
+                display: inline-block;
+                vertical-align: middle;
+                &:before {
+                    font-size: x-large;
+                    vertical-align: middle;
+                }
+
+                width: 30%;
+            }
+
+            > .o_form_field_percent_pie {
+                margin-left: @odoo-statbutton-spacing; // To create the button padding left (firefox bug)
+            }
+
+            > .o_stat_info { // contains the value and text
+                display: inline-block;
+                vertical-align: middle;
+
+                max-width: 70%;
+                padding-right: @odoo-statbutton-spacing;
+                line-height: 1.2;
+
+                .o_stat_value {
+                    .o-text-overflow(block);
+                    font-weight: 700;
+                    color: @odoo-brand-primary;
+                }
+                > .o_stat_text {
+                    .o-text-overflow(block);
+
+                    .o_stat_value {
+                        display: inline;
+                    }
+                }
+            }
+
+            // Some buttons only display text and directly use the WidgetButton template instead of StatInfo
+            > span {
+                .o-text-overflow(block);
+                .o_stat_info; // layout
+                white-space: normal; // text on several lines if needed
+            }
+
+            &.o_button_more {
+                text-align: center;
+                &:after {
+                    margin-left: 5px;
+                    .o-caret-down;
+                }
+            }
+        }
+
+        > .o_dropdown_more {
+            background-color: @odoo-brand-lightsecondary;
+            border: none;
+            border-top: 1px solid @odoo-webclient-background-color;
+            border-left: 1px solid @odoo-webclient-background-color;
+            margin: 0;
+            padding: 0;
+            > li {
+                padding: 0;
+                > .btn.oe_stat_button {
+                    border: none;
+                    border-bottom: 1px solid @odoo-webclient-background-color;
+                }
+            }
+        }
+    }
+
+    // Groups
+    .o_group {
+        @media (max-width: @screen-sm-max) {
+            &.o_label_nowrap {
+                .o_form_label {
+                    white-space: normal;
+                }
+            }
+        }
+        @media (max-width: @screen-xxs-max) {
+            .o_td_label .o_form_label {
+                font-weight: normal;
+            }
+        }
+    }
+
+    // Labels
+    .o_form_label {
+        &.o_form_label_empty, &.o_form_label_false {
+            opacity: 0.5;
+            font-weight: normal;
+        }
+        @media (max-width: @screen-xs-max) {
+            font-size: @odoo-font-size-base-touch;
+        }
+        @media (max-width: @screen-xxs-max) {
+            font-size: @odoo-label-font-size-factor * @odoo-font-size-base-touch;
+            font-weight: normal;
+            color: @odoo-brand-secondary;
+        }
+    }
+
+    // All required form fields
+    .o_form_required {
+        &.o_form_input, .o_form_input, &.o_form_textarea, .o_form_textarea {
+            border-width: 2px;
+            border-color: @odoo-main-text-color;
+        }
+    }
+
+    // Dropdowns input carret
+    .o_form_input_dropdown .o_dropdown_button {
+        .o-position-absolute(0, 0);
+    }
+
+    // Notebooks
+    .o_notebook {
+        > ul.nav-tabs {
+            border-bottom: 1px solid @odoo-brand-secondary;
+
+            > li {
+                > a {
+                    text-transform: uppercase;
+                    color: @odoo-main-color-muted;
+                    border: none;
+                    background-color: transparent;
+                    &:hover, &:focus, &:active {
+                        outline: none;
+                        color: @odoo-main-text-color;
+                    }
+                }
+                &:not(.active) {
+                    margin-bottom: 0; // Override bootstrap negative margin so that active and non-active tab have same height
+                }
+                &.active > a {
+                    border-bottom: 1px solid @odoo-brand-primary;
+                    &, &:hover, &:focus, &:active {
+                        color: @odoo-brand-primary;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+
+        .nav-tabs {
+            border: none;
+            > .tab-pane {
+                > :first-child {
+                    .oe_pad_content, .note-editor { // Remove the border-top of note editor when first-child of
+                        border-top: none;           // a tab (as it will be right under the tabs border-bottom)
+                    }
+                }
+            }
+        }
+    }
+
+    // One2Many List views
+    .o_form_field .o_list_view {
+        border: none;
+
+        > thead {
+            background: transparent;
+            border-bottom: 1px solid @odoo-form-lightsecondary;
+        }
+
+        > tfoot > tr > td {
+            padding: 0;
+            background-color: @odoo-list-grey;
+        }
+    }
+    &.o_form_editable .o_form_field .o_list_view {
+        td.o_readonly {
+            background-color: lightgrey;  // Readonly fields on edit mode
+        }
+    }
+
+    // Percent pie field
+    .o_form_field_percent_pie {
+        @pie-dimension: @odoo-statbutton-height - 2 * @odoo-statbutton-vpadding;
+        @pie-ring-width: 4px;
+
+        .o_pie {
+            width: @pie-dimension;
+            height: @pie-dimension;
+
+            &:after { // Outside pie border to go over border-radius irregularities
+                border: 1px solid @odoo-brand-secondary;
+            }
+
+            .o_pie_value {
+                .o-position-absolute(@pie-ring-width, @pie-ring-width);
+                width: @pie-dimension - 2 * @pie-ring-width;
+                height: @pie-dimension - 2 * @pie-ring-width;
+                border: 1px solid @odoo-brand-secondary;
+                background-color: @odoo-brand-lightsecondary;
+            }
+        }
+    }
+
+    // Translate icon
+    .o_field_translate {
+        margin-left: -12px;
+    }
+
+    // Specific style classes
+    .o_group.o_inner_group.oe_subtotal_footer {
+        border-top: 1px solid @odoo-brand-secondary;
+        .oe_subtotal_footer_separator {
+            border-top: 1px solid @odoo-brand-secondary;
+        }
+    }
+}

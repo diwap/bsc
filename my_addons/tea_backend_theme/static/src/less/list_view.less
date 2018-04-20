@@ -1,0 +1,19 @@
+.o_list_view.table {
+    border: none;
+    thead, tfoot, td, th {
+        border: none;
+    }
+
+    thead {
+        background-color: @odoo-list-grey;
+        > tr > th.o_column_sortable:hover {
+            background-color: darken(@odoo-list-grey, 5%);
+        }
+    }
+
+    tbody tr.o_group_header {
+        background-color: @odoo-list-group-header-color;
+        background-image: none;
+        border-top: 1px solid @odoo-list-grey;
+    }
+}

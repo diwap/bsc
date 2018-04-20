@@ -1,7 +1,7 @@
 version: '2'
 services:
   web:
-    image: diwap/bsc:fyp
+    image: diwap/bsc:latest
     restart: always
     depends_on:
       - db

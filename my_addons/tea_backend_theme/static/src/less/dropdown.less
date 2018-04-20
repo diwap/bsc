@@ -1,0 +1,47 @@
+.ui-autocomplete .ui-menu-item {
+    &.ui-state-focus {
+        background-color: @dropdown-link-hover-bg;
+    }
+    &.ui-state-focus > a {
+        color: @dropdown-link-color;
+        &:hover {
+            color: @dropdown-link-color;
+        }
+    }
+    &.o_m2o_dropdown_option > a,
+    &.ui-state-focus.o_m2o_dropdown_option > a {
+        color: @odoo-brand-optional;
+        &:hover {
+            color: @odoo-brand-optional;
+        }
+    }
+}
+
+.oe_dropdown_toggle {
+    float: right;
+    position: relative;
+
+    .oe_dropdown_menu {
+        display: none;
+        position: absolute;
+        min-width: 160px;
+        background: white;
+        border: 1px solid gray;
+        z-index: 3;
+
+        &.oe_opened {
+            display: block;
+        }
+    }
+}
+
+// Buttons used as dropdown toggler
+.o_dropdown_toggler_btn {
+    .btn-link;
+    .box-shadow(none)!important; // override box-shaddow of btn-group open
+    color: @odoo-main-text-color;
+    &:hover, &:focus {
+        color: darken(@odoo-main-text-color, 20%);
+    }
+    padding: 0;
+}

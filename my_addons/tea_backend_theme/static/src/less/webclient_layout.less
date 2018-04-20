@@ -1,0 +1,191 @@
+// ------------------------------------------------------------------
+// Base layout rules, use 'webclient.less' for styling
+// ------------------------------------------------------------------
+html {
+    height: 100%;
+
+    .o_web_client {
+        height: 100%;
+        .o-flex-display();
+        .o-flex-flow(column, nowrap);
+        @media (max-width: @screen-xs-max) {
+            overflow: auto;  // scrollbar if necessary
+        }
+
+        &.o_fullscreen {
+            .o_main_navbar {
+                display: none;
+            }
+            .o_sidebar{
+                display: none;
+            }
+        }
+
+        .o_main_navbar {
+            .o-flex(0, 0, auto);
+
+        }
+
+        > .o_main {
+            .o-flex(1, 1, auto);
+            .o-flex-display();
+            min-height: 0; // Allow flex to shrink this element as much as it wants
+            height: 100%;
+
+            .o_sidebar_menu{
+                .o-flex(0, 0, @odoo-sidebar-width);
+                .o-flex-display();
+                .o-flex-flow(column, nowrap);
+                background-color: @odoo-sidebar-bg;
+
+                //border-right: 1px solid #afafb6;
+                @media (max-width: @screen-sm-min) {
+                    display: none;
+                }
+
+                .o_sidebar_menu_logo {
+                    .o-flex(0, 0, auto);
+                    text-align: center;
+                    position: relative;
+
+                    > img {
+                        margin: 14px 0;
+                    }
+
+                    .oe_logo_edit {
+                        position: absolute;
+                        top: 1px;
+                        width: 100%;
+                        padding: 4px;
+                        margin: 14px 0;
+                        display: none;
+                        color: #eee;
+                        background: rgba(37,37,37,0.9);
+                    }
+                    &:hover .oe_logo_edit_admin {
+                        display: block;
+                    }
+                }
+
+                .o_sidebar_menu_content{
+                    .o-flex(1, 1, auto);
+                    height:100%;
+                    overflow-y: auto;
+
+                    .oe_application_menu_placeholder{
+                        list-style: none;
+                        margin: 0;
+                        padding: 0;
+
+                        > li{
+                            display: block;
+                            margin: 0;
+                            padding: 0;
+                            border: 0px;
+                            text-align: left;
+                            >a {
+                                display: block;
+                                position: relative;
+                                margin: 0;
+                                border: 0px;
+                                padding: 10px 15px;
+                                text-decoration: none;
+                                font-size: 14px;
+                                font-weight: 300;
+                                border-top: 1px solid #697380;
+                                color: #ffffff;
+                                border-radius: 0 !important;
+                                background-color: transparent;
+                                >img{
+                                    width: 24px;
+                                    height: 24px;
+                                    margin-right:5px
+                                }
+                            }
+                            > .active{
+                                border-top: 6px solid #31c7b2;
+                                background: #31c7b2;
+                                border-top-color: transparent;
+                                color: #ffffff;
+                            }
+                            > a:hover{
+                                color: #555487;
+                            }
+                        }
+                        > li:hover > a{
+                            background: #535f6d;
+                            color: #efefef;
+                        }
+
+                        .oe_sidebar_menu_section{
+
+                        }
+                    }
+                }
+            }
+
+            .o_main_content {
+                .o-flex(1, 1, auto);
+                .o-flex-display();
+                .o-flex-flow(column, nowrap);
+                .o_control_panel {
+                    .o-flex(0, 0, auto);
+
+                    @media (max-width: @screen-sm-min) {
+                        margin-left: 0;
+                    }
+                }
+
+                .o_content {
+                    .o-flex(1, 1, auto);
+                    background-color: #FFFFFF;
+                    height: 100%;
+                    @media (min-width: @screen-sm-min) {
+                        overflow: auto;
+                        height: 100%;
+                        background-color: #FFFFFF;
+                    }
+                    position: relative; // Allow to redistribute the 100% height to its child
+                    @media (max-width: @screen-xs-max) {
+                        overflow: visible;
+                        height: auto;
+                        margin-left: 0;
+                        background-color: #FFFFFF;
+                    }
+
+                    .o_view_manager_content {
+                        background-color: #FFFFFF;
+                        position: absolute; // Get the 100% height of its flex parent
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        left: 0;
+                        height: 100%;
+                        width: 100%;
+
+                        &.o_form_field {
+                            @media (max-width: @screen-xs-max) {
+                                position: static;  // reset the height 100% distribution on flex item
+                                height: auto;  // reset height inheritance
+                            }
+                        }
+
+                        .o_view_manager_content {
+                            position: static; // Reset position for nested view managers
+                            height: auto; // reset height inheritance for nested view managers
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    .o_loading {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+    }
+}

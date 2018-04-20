@@ -1,0 +1,103 @@
+// ------------------------------------------------------------------
+// Checkboxes
+// ------------------------------------------------------------------
+div.o_checkbox {
+    @odoo-checkbox-size: 15px;
+
+    display: inline-block;
+    position: relative;
+    vertical-align: sub;
+
+    > input {
+        width: @odoo-checkbox-size;
+        height: @odoo-checkbox-size;
+        margin: 0; // bootstrap override
+
+        opacity: 0;
+        .o-position-absolute();
+        cursor: pointer;
+
+        + span {
+            display: block;
+            width: @odoo-checkbox-size;
+            height: @odoo-checkbox-size;
+            border: 1px solid @odoo-brand-secondary;
+            background-color: white;
+        }
+
+        &:checked + span {
+            background-repeat: no-repeat;
+            background-image: url(../img/checked.svg);
+            background-position: center center;
+        }
+
+        &:disabled + span {
+            opacity: 0.7;
+            border: 1px solid @odoo-brand-lightsecondary;
+        }
+
+        &:focus + span {
+            outline: 1px solid @odoo-brand-optional;
+        }
+    }
+}
+
+// ------------------------------------------------------------------
+// Inputs and selects
+// ------------------------------------------------------------------
+.o-input() {
+    border: 1px solid @odoo-form-lightsecondary;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+}
+input[type="text"], input[type="password"], input[type="number"], textarea, select {
+    .o-input();
+
+    width: 100%;
+    outline: none;
+    display: block;
+}
+select { // FIXME buggy 'padding-left'
+    cursor: pointer;
+    background-color: transparent;
+    min-width: 50px;
+
+    .o-appearance(none);
+    background-image: url("/tea_backend_theme/static/src/img/down-arrow.png");
+    background-repeat: no-repeat;
+    background-position: right center;
+
+    color: transparent; // This is a hack to remove the outline in FF
+    text-shadow: 0 0 0 @odoo-main-text-color;
+    > option {
+        color: @odoo-main-text-color;
+    }
+}
+
+.o-placeholder() { // Rules below need to be separeted. Otherwise all browsers will discard the whole rule.
+    color: @odoo-brand-secondary;
+    opacity: 0.5;
+}
+::-webkit-input-placeholder { // WebKit, Blink, Edge
+    .o-placeholder();
+}
+::-moz-placeholder { // Mozilla Firefox 19+
+    .o-placeholder();
+}
+:-ms-input-placeholder { // Internet Explorer 10-11
+    .o-placeholder();
+}
+
+// ------------------------------------------------------------------
+// Misc.
+// ------------------------------------------------------------------
+.o_loading {
+    background-color: @odoo-brand-primary;
+    color: white;
+    padding: 4px;
+}
+
+.oe_clear {
+    clear: both;
+}

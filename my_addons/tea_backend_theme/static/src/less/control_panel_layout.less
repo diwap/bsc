@@ -1,0 +1,88 @@
+.o-when-not-full() {
+    width: 0;
+    max-height: @breadcrumb-height;
+    transition: width 400ms ease, max-height 0ms ease 0ms;
+}
+.o-when-full() {
+    width: 88%;
+    max-height: 1000px;
+    transition: width 400ms ease, max-height 0ms ease 400ms;
+}
+
+@media (max-width: @screen-xs-max) {
+    .o_control_panel {
+        .breadcrumb  {
+            .o-when-not-full();
+            overflow: hidden;
+            white-space: nowrap;            
+
+            > li {
+                &:before {
+                    display: none;
+                }
+
+                &.o_back_button {
+                    .btn;
+                    .btn-sm;
+                    .btn-default;
+
+                    &:before {
+                        font-family: FontAwesome;
+                        content: ""; // fa-arrow-left
+                        display: inline-block;
+
+                        padding: 0; // override bootstrap
+                        color: inherit;
+                    }
+
+                    > a {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .o_cp_searchview {
+            .o-when-full();
+
+            > div { // searchview or custom widget
+                width: 100%;
+                max-height: 1000px;
+                transition: max-height 0ms ease 400ms;
+                
+                overflow: hidden;
+                &.active {
+                    overflow: visible;
+                }
+
+                padding-right: 0;
+                .o_searchview_more {
+                    display: none;
+                }
+            }
+        }
+
+        .o_cp_sidebar, .o_cp_switch_buttons {
+            display: none;
+        }
+
+        .o_search_options {
+            display: block;
+        }
+
+        &.o_breadcrumb_full {
+            .breadcrumb {
+                .o-when-full();
+            }
+
+            .o_cp_searchview {
+                .o-when-not-full();
+
+                > div { // searchview or custom widget
+                    max-height: @breadcrumb-height;
+                    transition: max-height 0ms ease 0ms;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,40 @@
+.o_kanban_view.o_kanban_grouped {
+    .o_kanban_group .o_kanban_header {
+        color: white;
+        .o_kanban_config i {
+            color: #ccc;
+            &:hover {
+                background-color: darken(@gray-light, 10%);
+            }
+        }
+        .o_kanban_quick_add > i {
+            color: white;
+            &:hover {
+                background-color: @odoo-brand-optional;
+            }
+        }
+    }
+
+    .o_kanban_group.o_column_folded {
+        background-color: @gray-light;
+        border-color: @odoo-main-text-color;
+        &:hover {
+            background-color: darken(@gray-light, 10%);
+        }
+    }
+
+    .o_column_quick_create {
+        background-color: @odoo-main-text-color;
+        &:hover {
+            background-color: darken(@gray-light, 10%);
+        }
+        .o_column_header {
+            .o_kanban_add_column > i {
+                color: white;
+            }
+            .o_kanban_title {
+                color: @gray-lighter;
+            }
+        }
+    }
+}

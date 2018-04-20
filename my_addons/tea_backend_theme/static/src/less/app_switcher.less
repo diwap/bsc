@@ -1,0 +1,155 @@
+
+.o_application_switcher {
+    // Fallback for browsers that doesn't support css gradients
+    background-position: center;
+    background-image: url(/tea_backend_theme/static/src/img/application-switcher-bg.jpg);
+    .o-background-size(cover);
+
+    // Prefer css gradient over images
+    .o-skew-gradient(rgb(94, 102, 114), rgba(121, 112, 131, 1));
+
+    font-size: @odoo-font-size-base-touch;
+
+    .o_menu_search.o_bar_hidden input {
+        cursor: default;
+    }
+
+    .o_application_switcher_scrollable {
+
+        .o_apps {
+            margin-top: 10px;
+
+            .user-select(none);
+
+            .o_app {
+                padding: 10px 0;
+                background: transparent;
+                border: 1px solid transparent;
+                border-radius: 6%;
+                text-decoration: none;
+                text-align: center;
+                outline: none;
+                .o-transition(all, 0.3s);
+
+                .o_app_icon {
+                    width: 80%;
+                    max-width: 70px;
+                    border-radius: 6%;
+                    .o-transition(all, 0.1s);
+                    box-shadow: 0 6px 15px fade(black, 5%);
+                    -webkit-filter: grayscale(25%);
+                    filter: grayscale(25%);
+                }
+
+                div.o_app_icon { // studio
+                    margin: auto;
+                    position: relative;
+                    overflow: hidden;
+
+                    &:before { // so that the div is the same size as images
+                        content: "";
+                        display: block;
+                        padding-top: 100%;
+                    }
+
+                    > i.fa {
+                        .o-position-absolute(27%, 0, auto, 0);
+                        font-size: 36px;
+
+                        @media screen and (max-width: 408px) { // where icons start to shrink
+                            font-size: 30px; // on old browser, optimized for mobile range
+                            font-size: 8.826vw; // ~36px at 408px
+                        }
+                    }
+                }
+
+                .o_caption {
+                    .o-text-overflow(block);
+                    margin-top: 8px;
+                    color: white;
+                    font-weight: 700;
+                }
+
+                &:focus, &.o_focused {
+                    background-color: fade(white, 10%);
+
+                    .o_app_icon {
+                        box-shadow: 0 0 0 transparent;
+                        -webkit-filter: grayscale(0%);
+                        filter: grayscale(0%);
+                    }
+                }
+
+                &:hover {
+                    border-color: fade(white, 8%);
+                    background-color: fade(white, 5%);
+
+                    .o_app_icon {
+                        box-shadow: 0 0 0 transparent;
+                        -webkit-filter: grayscale(0%);
+                        filter: grayscale(0%);
+                    }
+                }
+            }
+        }
+
+        .o_menuitems {
+            margin-bottom: 40px;
+
+            .o_menuitem {
+                padding: 2px;
+                .o-text-overflow();
+                color: @odoo-brand-lightsecondary;
+                margin-bottom: 3px;
+                @media (min-width: @screen-sm-min) {
+                    font-size: 20px;
+                }
+                outline: none;
+                width: 100%;
+                @media (max-width: @screen-xs-max) {
+                    padding: 5px 0;
+                }
+                &:hover {
+                    color: white;
+                }
+                &:focus, &.o_focused {
+                    background-color: fade(white, 5%);
+                }
+            }
+        }
+
+        .o_no_result {
+            color: @odoo-brand-lightsecondary;
+            font-size: 22px;
+            margin-top: 10px;
+        }
+
+        .o_application_switcher_footer {
+            .user-select(none);
+            > img {
+                width: 96px;
+                margin-bottom: 30px;
+            }
+        }
+    }
+}
+
+.database_expiration_panel {
+    text-align: center;
+    max-width: 768px;
+    width: 100%;
+    .alert {
+        @media (min-width: @screen-md-min) {
+            margin-top: 25px;
+        }
+        margin-bottom: 0px;
+    }
+}
+
+.database_expiration_panel a i {
+    margin: 0 0.2em;
+}
+
+.oe_instance_register_form, .oe_instance_success, .oe_instance_error, .oe_subscription_updated {
+    display: none;
+}

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+
+<div t-name="AppSwitcher" class="o_application_switcher">
+    <div class="o_menu_search o_bar_hidden">
+        <span class="fa fa-search fa-2x o_menu_search_icon"/>
+        <input type="text" placeholder="Search..." class="o_menu_search_input" onfocus="this.value = this.value;"/>
+    </div>
+    <div class="o_application_switcher_scrollable">
+        <t t-call="AppSwitcher.Content"/>
+    </div>
+</div>
+
+<t t-name="AppSwitcher.Content">
+    <div t-if="widget.state.apps.length" class="o_apps">
+        <t t-set="focused_app_index" t-value="widget.get_app_index()"/>
+        <t t-foreach="widget.state.apps" t-as="app">
+          <a
+            t-att-class="'o_app o_menuitem' + ((focused_app_index === app_index)? ' o_focused' : '')"
+            t-att-data-menu="app.id"
+            t-att-data-action-model="app.action ? app.action.split(',')[0] : ''"
+            t-att-data-action-id="app.action"
+            t-att-data-menu-xmlid="app.xmlid"
+            t-att-href="app.href ? app.href : ('#menu_id='+app.id+'&amp;action_id='+app.action)">
+            <img t-if="app.web_icon_data" class="o_app_icon" t-att-src="app.web_icon_data"/>
+            <t t-if="!app.web_icon_data" t-raw="app.web_icon"/>
+            <div class="o_caption"><t t-esc="app.label"/></div>
+          </a>
+        </t>
+    </div>
+    <div t-if="widget.state.menu_items.length" class="o_menuitems">
+        <t t-set="focused_menu_index" t-value="widget.get_menu_index()"/>
+        <t t-foreach="widget.state.menu_items" t-as="menu">
+            <a
+              t-att-class="'o_menuitem' + ((focused_menu_index === menu_index)? ' o_focused' : '')"
+              t-att-href="menu.href ? menu.href : ('#menu_id='+menu.id+'&amp;action_id='+menu.action)"
+              t-att-data-menu="menu.id">
+                  <t t-esc="menu.label"/>
+            </a>
+        </t>
+    </div>
+    <t t-if="widget.state.apps.length + widget.state.menu_items.length === 0">
+        <div class="o_no_result">No result</div>
+    </t>
+    <div class="o_application_switcher_footer">
+        <img src="/web/static/src/img/logo_inverse_white_206px.png"/>
+    </div>
+</t>
+
+<nav t-name="Menu">
+    <div class="o_main_navbar">
+        <a href="#" class="fa o_menu_toggle"/>
+        <button type="button" class="fa fa-bars pull-right visible-xs-block o_mobile_menu_toggle"/>
+
+        <div class="o_menu_brand"/>
+        <ul class="o_menu_sections"/>
+        <ul class="o_menu_systray"/>
+    </div>
+</nav>
+
+<t t-name="Menu.link">
+    <t t-if="!depth"><t t-set="depth" t-value="1"/></t>
+    <t t-if="depth"><t t-set="depth" t-value="depth + 1"/></t>
+
+    <li t-if="!menu.children.length">
+        <a t-attf-href="#menu_id=#{menu.id}&amp;action=#{menu.action ? menu.action.split(',')[1] : ''}"
+            t-att-data-menu="menu.id"
+            t-att-data-action-model="menu.action ? menu.action.split(',')[0] : ''"
+            t-att-data-action-id="menu.action ? menu.action.split(',')[1] : ''"
+            t-att-data-menu-xmlid="menu.xmlid"
+            t-att-class="'o_menu_entry_lvl_' + depth"
+            data-toggle="collapse" data-target="#o_navbar_collapse.in">
+            <span><t t-esc="menu.name"/></span>
+        </a>
+    </li>
+
+    <li t-if="menu.children.length" role="presentation" t-att-class="'dropdown-header o_menu_header_lvl_' + depth">
+        <span><t t-esc="menu.name"/></span>
+        <t t-foreach="menu.children" t-as="menu">
+            <t t-call="Menu.link"/>
+        </t>
+    </li>
+</t>
+
+    <!-- separate first level dropdown from the others to avoid nested dropdown -->
+<t t-name="Menu.sections">
+    <t t-foreach="menu_data.children" t-as="first_level_menu">
+        <section t-att-class="first_level_menu.id">
+            <t t-if="first_level_menu.children.length">
+                <t t-foreach="first_level_menu.children" t-as="second_level_menu">
+                    <t t-if="!second_level_menu.children.length">
+                        <t t-set="menu" t-value="second_level_menu"/>
+                        <t t-call="Menu.link"/>
+                    </t>
+                    <t t-if="second_level_menu.children.length">
+                        <li>
+                            <a href="#" class="dropdown-toggle" t-att-data-menu-xmlid="second_level_menu.xmlid" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <t t-esc="second_level_menu.name"/>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <t t-foreach="second_level_menu.children" t-as="third_level_menu">
+                                    <t t-set="menu" t-value="third_level_menu"/>
+                                    <t t-call="Menu.link"/>
+                                </t>
+                            </ul>
+                        </li>
+                    </t>
+                </t>
+            </t>
+        </section>
+    </t>
+</t>
+
+<t t-extend="UserMenu">
+    <t t-jquery="li.divider" t-operation="before">
+        <li class="hidden-xs"><a href="#" data-menu="shortcuts">Shortcuts</a></li>
+    </t>
+</t>
+
+<div t-name="UserMenu.shortcuts">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-8">
+                <table class="o_shortcut_table text-center">
+                    <thead>
+                        <tr>
+                            <th style="width:50%;">Description</th>
+                            <th style="width:25%;" class="text-center">Windows/Linux</th>
+                            <th style="width:25%;" class="text-center">Mac</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td align="left"><strong>S</strong>ave a record</td>
+                            <td>
+                                <span class="o_key">Alt</span> + <span class="o_key">s</span>
+                            </td>
+                            <td>
+                                <span class="o_key">Control</span> + <span class="o_key">Alt</span> + <span class="o_key">s</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">Edit a record (<strong>a</strong>dapt)</td>
+                            <td>
+                                <span class="o_key">Alt</span> + <span class="o_key">a</span>
+                            </td>
+                            <td>
+                                <span class="o_key">Control</span> + <span class="o_key">Alt</span> + <span class="o_key">a</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">Discard a record modification (<strong>j</strong>unk)</td>
+                            <td>
+                                <span class="o_key">Alt</span> + <span class="o_key">j</span>
+                            </td>
+                            <td>
+                                <span class="o_key">Control</span> + <span class="o_key">Alt</span> + <span class="o_key">j</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left"><strong>C</strong>reate a new record</td>
+                            <td>
+                                <span class="o_key">Alt</span> + <span class="o_key">c</span>
+                            </td>
+                            <td>
+                                <span class="o_key">Control</span> + <span class="o_key">Alt</span> + <span class="o_key">c</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">Open to <strong>l</strong>ist view</td>
+                            <td>
+                                <span class="o_key">Alt</span> + <span class="o_key">l</span>
+                            </td>
+                            <td>
+                                <span class="o_key">Control</span> + <span class="o_key">Alt</span> + <span class="o_key">l</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">Open to <strong>k</strong>anban view</td>
+                            <td>
+                                <span class="o_key">Alt</span> + <span class="o_key">k</span>
+                            </td>
+                            <td>
+                                <span class="o_key">Control</span> + <span class="o_key">Alt</span> + <span class="o_key">k</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">Open the <strong>p</strong>revious record</td>
+                            <td>
+                                <span class="o_key">Alt</span> + <span class="o_key">p</span>
+                            </td>
+                            <td>
+                                <span class="o_key">Control</span> + <span class="o_key">Alt</span> + <span class="o_key">p</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">Open the <strong>n</strong>ext record</td>
+                            <td>
+                                <span class="o_key">Alt</span> + <span class="o_key">n</span>
+                            </td>
+                            <td>
+                                <span class="o_key">Control</span> + <span class="o_key">Alt</span> + <span class="o_key">n</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left">Toggle <strong>h</strong>ome menu</td>
+                            <td>
+                                <span class="o_key">Alt</span> + <span class="o_key">h</span>
+                            </td>
+                            <td>
+                                <span class="o_key">Control</span> + <span class="o_key">Alt</span> + <span class="o_key">h</span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div t-name="FormRenderingStatusBar" class="o_form_statusbar">
+    <div class="o_statusbar_buttons"/>
+</div>
+
+</templates>
