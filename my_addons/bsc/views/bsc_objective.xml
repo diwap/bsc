@@ -41,9 +41,9 @@
                             <page string="Measure">
                                 <field name="measure_objective_ids"/>
                             </page>
-                            <page string="Recommendation">
+                            <!-- <page string="Recommendation">
                                 <field name="recommendation_objective_ids" context="{'form_view_ref': 'bsc.bsc_form_recommendation_objective'}"/>
-                            </page>
+                            </page> -->
                         </notebook>
                     </sheet>
                 </form>

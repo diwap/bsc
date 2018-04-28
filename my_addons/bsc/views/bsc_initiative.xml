@@ -45,9 +45,9 @@
                             <field name="description"/>
                         </group>
                         <notebook>
-                            <page string="Recommendation">
+                            <!-- <page string="Recommendation">
                                 <field name="recommendation_initiative_ids" context="{'form_view_ref': 'bsc.bsc_form_recommendation_initiative'}"/>
-                            </page>
+                            </page> -->
                             <page string="Milestone">
                                 <field name="milestone_initiative_ids"/>
                             </page>

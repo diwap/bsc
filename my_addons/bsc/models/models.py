@@ -39,7 +39,7 @@ class Objective(models.Model):
 	title = fields.Char("Title", required=True)
 	owner = fields.Many2one('res.partner', "Owner")
 	objective_bsc_ids = fields.Many2one('bsc.bsc',"BSC")
-	recommendation_objective_ids = fields.One2many('bsc.recommendation','recommendation_objective_ids')
+	# recommendation_objective_ids = fields.One2many('bsc.recommendation','recommendation_objective_ids')
 	analysis = fields.Text("Analysis")
 	description = fields.Text("Description")
 	collaborator_ids = fields.Many2many('res.partner','bsc_objective_res_partner_rel', string="Collaborators")
@@ -51,7 +51,7 @@ class Measure(models.Model):
 
 	title = fields.Char("Title")
 	analysis = fields.Text("Analysis")
-	recommendation_measure_ids = fields.One2many('bsc.recommendation','recommendation_measure_ids')
+	# recommendation_measure_ids = fields.One2many('bsc.recommendation','recommendation_measure_ids')
 	measure_data_measure_ids = fields.One2many('bsc.measuredata','measure_data_measure_ids')
 	owner = fields.Many2one('res.partner',"Owner")
 	collaborator_ids = fields.Many2many('res.partner','bsc_measure_res_partner_rel', string="Collaborators")
@@ -70,7 +70,7 @@ class Initiative(models.Model):
 	description = fields.Text("Description")
 	percent_complete = fields.Float("Percent Complete")
 	analysis = fields.Text("Analysis")
-	recommendation_initiative_ids = fields.One2many('bsc.recommendation','recommendation_initiative_ids')
+	# recommendation_initiative_ids = fields.One2many('bsc.recommendation','recommendation_initiative_ids')
 	start_date = fields.Date("Start Date")
 	end_date = fields.Date("End Date")
 	complete_status = fields.Boolean("Complete Status")
@@ -78,15 +78,15 @@ class Initiative(models.Model):
 	milestone_initiative_ids = fields.One2many('bsc.milestone','milestone_initiative_ids')
 	action_initiative_ids = fields.One2many('bsc.action','action_initiative_ids')
 
-class Recommendation(models.Model):
-	_name = 'bsc.recommendation'
-	_rec_name = 'text'
+# class Recommendation(models.Model):
+# 	_name = 'bsc.recommendation'
+# 	_rec_name = 'text'
 
-	text = fields.Text("Text")
-	posted_by = fields.Many2one('res.partner',"Posted By")
-	recommendation_objective_ids = fields.Many2one('bsc.objective',"Recommendations")
-	recommendation_measure_ids = fields.Many2one('bsc.measure',"Recommendation")
-	recommendation_initiative_ids = fields.Many2one('bsc.initiative',"Recommendation")
+# 	text = fields.Text("Text")
+# 	posted_by = fields.Many2one('res.partner',"Posted By")
+# 	recommendation_objective_ids = fields.Many2one('bsc.objective',"Recommendations")
+# 	recommendation_measure_ids = fields.Many2one('bsc.measure',"Recommendation")
+# 	recommendation_initiative_ids = fields.Many2one('bsc.initiative',"Recommendation")
 
 class MeasureData(models.Model):
 	_name = 'bsc.measuredata'
