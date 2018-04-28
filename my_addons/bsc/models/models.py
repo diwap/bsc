@@ -19,6 +19,7 @@ class Bsc(models.Model):
 
 class Objective(models.Model):
 	_name = 'bsc.objective'
+	_inherit = 'mail.thread'
 	_rec_name = 'title'
 
 	# @api.model
@@ -47,6 +48,7 @@ class Objective(models.Model):
 
 class Measure(models.Model):
 	_name = 'bsc.measure'
+	_inherit = 'mail.thread'
 	_rec_name = 'title'
 
 	title = fields.Char("Title")
@@ -60,6 +62,7 @@ class Measure(models.Model):
 
 class Initiative(models.Model):
 	_name = 'bsc.initiative'
+	_inherit = 'mail.thread'
 	_rec_name = 'title'
 
 	title = fields.Char("Title")
