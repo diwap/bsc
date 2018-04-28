@@ -18,7 +18,8 @@ RUN set -x; \
 
 RUN set -x; \
         apt-get update \
-        && apt-get install npm
+        && apt-get install -y --no-install-recommends \
+        npm
 
 RUN ln -s /usr/bin/nodejs /usr/bin/node
 RUN npm install -g less less-plugin-clean-css
