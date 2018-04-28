@@ -105,12 +105,12 @@ venv.bak/
 .mypy_cache/
 
 ### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history
+# .vscode/*
+# !.vscode/settings.json
+# !.vscode/tasks.json
+# !.vscode/launch.json
+# !.vscode/extensions.json
+# .history
 
 # End of https://www.gitignore.io/api/python,visualstudiocode
 
