@@ -16,14 +16,6 @@ RUN set -x; \
             libssl1.0-dev \
             xz-utils
 
-RUN set -x; \
-        apt-get update \
-        && apt-get install -y --no-install-recommends \
-        npm
-
-RUN ln -s /usr/bin/nodejs /usr/bin/node
-RUN npm install -g less less-plugin-clean-css
-
 # Install Odoo
 ENV ODOO_VERSION 11.0
 ENV ODOO_RELEASE 20180122
