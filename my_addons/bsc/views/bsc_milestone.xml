@@ -48,7 +48,7 @@
                         </group>
                         <notebook>
                             <page string="Action">
-                                <field name="action_milestone_ids"/>
+                                <field name="action_milestone_ids" context="{'form_view_ref': 'bsc.bsc_form_action_milestone', 'default_action_milestone_ids': id}"/>
                             </page>
                         </notebook>
                     </sheet>

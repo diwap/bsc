@@ -21,12 +21,25 @@
         <form>
           <sheet>
             <group>
-              <field name="name"/>
-              <field name="category"/>
+              <group>
+                <div class="oe_title">
+                    <h1>
+                        <field name="name" default_focus="1" placeholder="BSC Name"/>
+                    </h1>
+                    <div class="o_row">
+                        <field name="company_id" placeholder="Company Name"/>
+                    </div>
+                </div>
+              </group>
+            </group>
+            <group>
+              <group>
+                <field name="category"/>
+              </group>
             </group>
             <notebook>
               <page string="Objectives">
-                <field name="objective_bsc_ids">
+                <field name="objective_bsc_ids" context="{'default_objective_bsc_ids':id}">
                   <tree>
                     <field name="title"/>
                     <field name="owner"/>

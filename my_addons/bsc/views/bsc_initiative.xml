@@ -49,10 +49,10 @@
                                 <field name="recommendation_initiative_ids" context="{'form_view_ref': 'bsc.bsc_form_recommendation_initiative'}"/>
                             </page> -->
                             <page string="Milestone">
-                                <field name="milestone_initiative_ids"/>
+                                <field name="milestone_initiative_ids" context="{'default_milestone_initiative_ids':id}"/>
                             </page>
                             <page string="Action">
-                                <field name="action_initiative_ids" context="{'form_view_ref': 'bsc.bsc_form_action_initiative'}"/>
+                                <field name="action_initiative_ids" context="{'form_view_ref': 'bsc.bsc_form_action_initiative', 'default_action_initiative_ids': id}"/>
                             </page>
                         </notebook>
                     </sheet>
@@ -71,7 +71,7 @@
             <field name="model">bsc.initiative</field>
             <field name="arch" type="xml">
                 <search string="Search BSC Initiative">
-                    <!-- <field name=""/> -->
+                    <field name="title"/>
                     <field name="owner"/>
                     <group expand="0" string="Group By">
                         <!-- <filter name="group_title" string="" context="{'group_by':''}"/>
