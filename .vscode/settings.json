@@ -1,3 +1,27 @@
 {
-    "python.linting.pylintEnabled": false
+    "python.linting.pylintEnabled": false,
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": "\\.py$",
+                "cmd": "./runscript.sh"
+            },
+            {
+                "match": "\\.xml$",
+                "cmd": "./runscript.sh"
+            },
+            {
+                "match": "\\.js$",
+                "cmd": "echo 'I am a .js file ${file}.'"
+            },
+            {
+                "match": "\\.css$",
+                "cmd": "echo 'I am a .js file ${file}.'"
+            },
+            {
+                "match": "\\.less$",
+                "cmd": "echo 'I am a .js file ${file}.'"
+            }
+        ]
+    }
 }
