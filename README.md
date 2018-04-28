@@ -90,15 +90,15 @@ Enable __Run on Save__ and make sure you have following code in `.vscode/setting
         },
         {
             "match": "\\.js$",
-            "cmd": "echo 'I am a .js file ${file}.'"
+            "cmd": "./runscript.sh"
         },
         {
             "match": "\\.css$",
-            "cmd": "echo 'I am a .js file ${file}.'"
+            "cmd": "./runscript.sh"
         },
         {
             "match": "\\.less$",
-            "cmd": "echo 'I am a .js file ${file}.'"
+            "cmd": "./runscript.sh"
         }
     ]
 }
