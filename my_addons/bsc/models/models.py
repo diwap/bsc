@@ -2,7 +2,7 @@
 
 from odoo import models, fields, api
 from odoo.exceptions import UserError
-from datetime import date
+from datetime import date, datetime
 
 class Bsc(models.Model):
 	_name = 'bsc.bsc'
@@ -119,6 +119,12 @@ class MeasureData(models.Model):
 		for val in self:
 			val.variance =  (val.actual - val.target)/abs(val.target)*100
 
+STATES = [
+    ('initial', 'Initial'),
+    ('completed', 'Completed'),
+	('missed', 'Deadline Missed')
+]
+
 class Milestone(models.Model):
 	_name = 'bsc.milestone'
 	_rec_name = 'title'
@@ -134,13 +140,14 @@ class Milestone(models.Model):
 	collaborator_ids = fields.Many2many('res.users','bsc_milestone_res_users_rel', string="Collaborators")
 	description = fields.Text("Description")
 	start_date = fields.Date("Start Date")
-	end_date = fields.Date("End Date")
+	end_date = fields.Date("End Date", compute="_get_end_date")
 	completed_status = fields.Boolean("Completed Status")
 	completed_date = fields.Date("Completed Date", compute="_get_completed_date")
 	action_milestone_ids = fields.One2many('bsc.action','action_milestone_ids')
 
 	parent_milestone = fields.Many2one('bsc.milestone',"Milestone")
 	child_milestone = fields.One2many('bsc.milestone','parent_milestone')
+	state = fields.Selection(STATES, string='Completed Status', default='initial', readonly=True, index=True)
 
 	def _get_percent_complete(self):
 		for rec in self:
@@ -157,12 +164,19 @@ class Milestone(models.Model):
 		for rec in self:
 			if rec.percent_complete == 100:
 				rec.completed_date = date.today()
+			if rec.end_date and rec.completed_date:
+				if rec.end_date < rec.completed_date:
+					rec.write({'state': 'missed'})
+				else:
+					rec.write({'state': 'completed'})
 
-STATES = [
-    ('initial', 'Initial'),
-    ('completed', 'Completed'),
-	('missed', 'Deadline Missed')
-]
+	def _get_end_date(self):
+		for rec in self:
+			max_time = []
+			for dt in rec.action_milestone_ids:
+				max_time.append(datetime.strptime(dt.end_date, '%Y-%m-%d').date())
+			if max_time:
+				rec.end_date = max(max_time)
 
 class Action(models.Model):
 	_name = 'bsc.action'
