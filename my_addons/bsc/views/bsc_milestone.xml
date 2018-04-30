@@ -36,6 +36,7 @@
                                 <field name="start_date"/>
                                 <field name="end_date"/>
                                 <field name="completed_date" invisible="1"/>
+                                <field name="state" invisible="1"/>
                             </group>
                         </group>
                         <group>

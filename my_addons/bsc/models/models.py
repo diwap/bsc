@@ -4,6 +4,12 @@ from odoo import models, fields, api
 from odoo.exceptions import UserError
 from datetime import date, datetime
 
+STATES = [
+    ('initial', 'Initial'),
+    ('completed', 'Completed'),
+	('missed', 'Deadline Missed')
+]
+
 class Bsc(models.Model):
 	_name = 'bsc.bsc'
 	_rec_name = 'name'
@@ -85,15 +91,38 @@ class Initiative(models.Model):
 	collaborator_ids = fields.Many2many('res.users','bsc_initiative_res_users_rel', string="Collaborators")
 	budget = fields.Float("Budget")
 	description = fields.Text("Description")
-	percent_complete = fields.Float("Percent Complete")
+	percent_complete = fields.Float("Percent Complete", compute="_get_percent_complete")
 	analysis = fields.Text("Analysis")
 	# recommendation_initiative_ids = fields.One2many('bsc.recommendation','recommendation_initiative_ids')
 	start_date = fields.Date("Start Date")
 	end_date = fields.Date("End Date")
 	complete_status = fields.Boolean("Complete Status")
-	completed_date = fields.Date("Completed Date")
+	completed_date = fields.Date("Completed Date", compute="_get_completed_date")
 	milestone_initiative_ids = fields.One2many('bsc.milestone','milestone_initiative_ids')
 	# action_initiative_ids = fields.One2many('bsc.action','action_initiative_ids')
+
+	state = fields.Selection(STATES, string='Completed Status', default='initial', readonly=True, index=True)
+
+	def _get_percent_complete(self):
+		for rec in self:
+			try:
+				completed = []
+				for ms in rec.milestone_initiative_ids:
+					if ms.completed_status == True:
+						completed.append(ms.milestone_initiative_ids)
+				rec.percent_complete = len(completed)/len(rec.milestone_initiative_ids)*100
+			except ZeroDivisionError:
+				rec.percent_complete = 0
+
+	def _get_completed_date(self):
+		for rec in self:
+			if rec.percent_complete == 100:
+				rec.completed_date = date.today()
+			if rec.end_date and rec.completed_date:
+				if rec.end_date < rec.completed_date:
+					rec.write({'state': 'missed'})
+				else:
+					rec.write({'state': 'completed'})
 
 # class Recommendation(models.Model):
 # 	_name = 'bsc.recommendation'
@@ -119,11 +148,6 @@ class MeasureData(models.Model):
 		for val in self:
 			val.variance =  (val.actual - val.target)/abs(val.target)*100
 
-STATES = [
-    ('initial', 'Initial'),
-    ('completed', 'Completed'),
-	('missed', 'Deadline Missed')
-]
 
 class Milestone(models.Model):
 	_name = 'bsc.milestone'
@@ -141,7 +165,7 @@ class Milestone(models.Model):
 	description = fields.Text("Description")
 	start_date = fields.Date("Start Date")
 	end_date = fields.Date("End Date", compute="_get_end_date")
-	completed_status = fields.Boolean("Completed Status")
+	completed_status = fields.Boolean("Completed Status", compute="_get_completed_status")
 	completed_date = fields.Date("Completed Date", compute="_get_completed_date")
 	action_milestone_ids = fields.One2many('bsc.action','action_milestone_ids')
 
@@ -169,6 +193,11 @@ class Milestone(models.Model):
 					rec.write({'state': 'missed'})
 				else:
 					rec.write({'state': 'completed'})
+	
+	def _get_completed_status(self):
+		for rec in self:
+			if rec.percent_complete == 100:
+				rec.completed_status = True
 
 	def _get_end_date(self):
 		for rec in self:
