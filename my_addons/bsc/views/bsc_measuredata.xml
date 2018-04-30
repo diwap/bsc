@@ -8,8 +8,8 @@
                 <tree>
                     <field name="measure_data_measure_ids"/>
                     <field name="period"/>
-                    <field name="actual"/>
-                    <field name="target"/>
+                    <field name="actual" string="Actual" sum="Actual"/>
+                    <field name="target" string="Target" sum="Target"/>
                     <field name="variance"/>
                 </tree>
             </field>
@@ -52,12 +52,24 @@
                 </search>
             </field>
         </record>
+        <record id="view_bsc_measuredata_graph" model="ir.ui.view">
+            <field name="name">report.bsc.masuredata.graph</field>
+            <field name="model">bsc.measuredata</field>
+            <field name="arch" type="xml">
+                <graph type="bar">
+                    <field name="period" type="row"/>
+                    <field name="actual" type="col"/>
+                    <field name="target" type="col"/>
+                    <!-- <field name="variance" type="measure"/> -->
+                </graph>
+            </field>
+        </record>
         <record id="action_bsc_measuredata" model="ir.actions.act_window">
             <field name="name">BSC Measure data</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">bsc.measuredata</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,graph</field>
             <!-- <field name="view_id" eval="view_holiday_status_normal_tree"/> -->
             <field name="search_view_id" ref="view_bsc_measuredata_filter"/>
         </record>
