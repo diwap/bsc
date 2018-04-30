@@ -2,6 +2,7 @@
 
 from odoo import models, fields, api
 from odoo.exceptions import UserError
+from datetime import date
 
 class Bsc(models.Model):
 	_name = 'bsc.bsc'
@@ -127,7 +128,7 @@ class Milestone(models.Model):
 	owner = fields.Many2one('res.users',
 		string= "Owner",
 		default=lambda self: self.env.uid)
-	percent_complete = fields.Float("Percent Complete")
+	percent_complete = fields.Float("Percent Complete", compute='_get_percent_complete')
 	analysis = fields.Text("Analysis")
 	recommendation = fields.Text("Recommendation")
 	collaborator_ids = fields.Many2many('res.users','bsc_milestone_res_users_rel', string="Collaborators")
@@ -135,11 +136,33 @@ class Milestone(models.Model):
 	start_date = fields.Date("Start Date")
 	end_date = fields.Date("End Date")
 	completed_status = fields.Boolean("Completed Status")
-	completed_date = fields.Date("Completed Date")
+	completed_date = fields.Date("Completed Date", compute="_get_completed_date")
 	action_milestone_ids = fields.One2many('bsc.action','action_milestone_ids')
 
 	parent_milestone = fields.Many2one('bsc.milestone',"Milestone")
 	child_milestone = fields.One2many('bsc.milestone','parent_milestone')
+
+	def _get_percent_complete(self):
+		for rec in self:
+			try:
+				completed = []
+				for ms in rec.action_milestone_ids:
+					if ms.completed_status == True:
+						completed.append(ms.action_milestone_ids)
+				rec.percent_complete = len(completed)/len(rec.action_milestone_ids)*100
+			except ZeroDivisionError:
+				rec.percent_complete = 0
+
+	def _get_completed_date(self):
+		for rec in self:
+			if rec.percent_complete == 100:
+				rec.completed_date = date.today()
+
+STATES = [
+    ('initial', 'Initial'),
+    ('completed', 'Completed'),
+	('missed', 'Deadline Missed')
+]
 
 class Action(models.Model):
 	_name = 'bsc.action'
@@ -156,5 +179,24 @@ class Action(models.Model):
 	comment = fields.Text("Comment")
 	start_date = fields.Date("Start Date")
 	end_date = fields.Date("End Date")
-	completed_status = fields.Boolean("Completed Status")
+	completed_status = fields.Boolean("Completed Status", readonly=True)
 	completed_date = fields.Date("Completed Date")
+	state = fields.Selection(STATES, string='Completed Status', default='initial', readonly=True, index=True)
+
+	def toggle_status(self):
+		for rec in self:
+			rec.completed_date = date.today()
+			if rec.completed_status == False:
+				rec.completed_status = True
+		if self.end_date < self.completed_date:
+			rec.write({'state': 'missed'})
+		else:
+			rec.write({'state': 'completed'})
+		return True
+
+	def reset_complete(self):
+		for rec in self:
+			if rec.completed_status == True:
+				rec.completed_date = None
+				rec.completed_status = False
+		return rec.write({'state': 'initial'})
