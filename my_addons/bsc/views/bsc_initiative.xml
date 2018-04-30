@@ -51,9 +51,9 @@
                             <page string="Milestone">
                                 <field name="milestone_initiative_ids" context="{'default_milestone_initiative_ids':id}"/>
                             </page>
-                            <page string="Action">
+                            <!-- <page string="Action">
                                 <field name="action_initiative_ids" context="{'form_view_ref': 'bsc.bsc_form_action_initiative', 'default_action_initiative_ids': id}"/>
-                            </page>
+                            </page> -->
                         </notebook>
                     </sheet>
                     <sheet position="after">

@@ -19,6 +19,10 @@ class Bsc(models.Model):
 	category = fields.Selection(CATEGORY_SELECTION, string="Category", default='financial')
 	objective_bsc_ids = fields.One2many('bsc.objective','objective_bsc_ids')
 
+	_sql_constraints = [
+        ('name_uniq', 'unique(name)', 'BSC name must be unique'),
+    ]
+
 class Objective(models.Model):
 	_name = 'bsc.objective'
 	_inherit = 'mail.thread'
@@ -88,7 +92,7 @@ class Initiative(models.Model):
 	complete_status = fields.Boolean("Complete Status")
 	completed_date = fields.Date("Completed Date")
 	milestone_initiative_ids = fields.One2many('bsc.milestone','milestone_initiative_ids')
-	action_initiative_ids = fields.One2many('bsc.action','action_initiative_ids')
+	# action_initiative_ids = fields.One2many('bsc.action','action_initiative_ids')
 
 # class Recommendation(models.Model):
 # 	_name = 'bsc.recommendation'
