@@ -1,0 +1,41 @@
+<odoo>
+    <template id="assets_backend" name="bsc_bsc assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/bsc/static/src/css/bsc_style.css"/>
+        </xpath>
+    </template>
+    <!-- Case BSC dashboard view -->
+    <!-- <record id="action_bsc_dashboard_objective" model="ir.actions.act_window">
+        <field name="name">Objectives</field>
+        <field name="res_model">bsc.objective</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('objective_bsc_ids','=','objective_bsc_ids')]</field>
+        <field name="context">{
+                'search_default_objective_bsc_ids': [active_id],
+                'default_objective_bsc_ids': active_id,
+                'search_default_available': 1,
+        }
+        </field>
+        <field name="search_view_id" ref="view_picking_internal_search"/>
+            <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+            Click here to create a new transfer.
+            </p><p>
+            You can either do it immediately or mark it as Todo for future processing. Use your scanner to validate the transferred quantity quicker.
+            </p>
+        </field>
+    </record> -->
+    
+    <!-- <record id="dashboard_action_bsc_bsc" model="ir.actions.act_window">
+        <field name="name">BSC Dashboard</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">bsc.bsc</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="view_id" eval="view_holiday_status_normal_tree"/>
+        <field name="search_view_id" ref="view_bsc_objective_filter"/>
+    </record>
+    <menuitem name="Dashboard" id="bsc_dashboard_menu_root" web_icon="bsc,static/description/dashboard.png" action="dashboard_action_bsc_bsc" sequence="-1"/> -->
+</odoo>

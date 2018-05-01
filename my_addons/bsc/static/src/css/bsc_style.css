@@ -1,0 +1,29 @@
+.dexter{
+    color: #00bcd4;
+}
+
+#displayCount{
+    color:red;
+    background-color: black;
+}
+
+
+.oe_kanban_global_click.o_bsc_dashboard_kanban.o_kanban_record:hover{
+    border-bottom: 5px solid;
+    border-bottom-color:#00b7ff;
+    transition: .2s ease-in;
+}
+
+.oe_kanban_global_click.o_bsc_dashboard_kanban.o_kanban_record:hover div strong h3 {
+    color: #00b7ff;
+    transition: .2s ease-in;
+}
+
+.oe_kanban_global_click.o_bsc_dashboard_kanban.o_kanban_record{
+    border-bottom: 5px solid #d9d7d7;
+    /* border-bottom-color:#00b7ff; */
+}
+
+.o_bsc_dashboard_kanban div ul li span {
+    color: lightslategrey;
+}

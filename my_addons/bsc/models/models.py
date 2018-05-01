@@ -26,9 +26,26 @@ class Bsc(models.Model):
 	category = fields.Selection(CATEGORY_SELECTION, string="Category", default='financial')
 	objective_bsc_ids = fields.One2many('bsc.objective','objective_bsc_ids')
 
+	color = fields.Integer(string='Color Index', help="The color of the channel")
+	obj_count = fields.Integer("Count Objectives", compute="_objectives_count")
+	meas_count = fields.Integer("Count Measure", compute="_measures_count")
+	init_count = fields.Integer("Count Initiatives", compute="_initiatives_count")
+
 	_sql_constraints = [
-        ('name_uniq', 'unique(name)', 'BSC name must be unique'),
-    ]
+		('name_uniq', 'unique(name)', 'BSC name must be unique'),
+	]
+
+	def _objectives_count(self):
+		for rec in self:
+			rec.obj_count = rec.env['bsc.objective'].search_count([('objective_bsc_ids.name', '=', rec.name)])
+	
+	def _measures_count(self):
+		for rec in self:
+			rec.meas_count = rec.env['bsc.measure'].search_count([('measure_objective_ids.objective_bsc_ids.name', '=', rec.name)])
+
+	def _initiatives_count(self):
+		for rec in self:
+			rec.init_count = rec.env['bsc.initiative'].search_count([('measure_id.measure_objective_ids.objective_bsc_ids.name', '=', rec.name)])
 
 class Objective(models.Model):
 	_name = 'bsc.objective'

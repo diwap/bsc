@@ -36,6 +36,7 @@
         'views/bsc_measuredata.xml',
         # 'views/bsc_recommendation.xml',
         'views/bsc_milestone.xml',
-        'views/bsc_action.xml'
+        'views/bsc_action.xml',
+        'views/bsc_dashboard.xml'
     ],
 }

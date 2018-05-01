@@ -52,6 +52,41 @@
         </form>
       </field>
     </record>
+    <record id="bsc_bsc_dashboard_view_kanban" model="ir.ui.view" >
+        <field name="name">bsc.bsc.dashboard</field>
+        <field name="model">bsc.bsc</field>
+        <field name="arch" type="xml">
+            <kanban class="o_bsc_dashboard_kanban"> 
+                <field name="name"/>
+                <field name="obj_count"/>
+                <templates>
+                    <t t-name="kanban-box">
+                       <div class="oe_kanban_global_click o_bsc_dashboard_kanban">
+                            <div class="oe_kanban_details">
+                                <strong class="oe_partner_heading"><h3><field name="name"/></h3></strong>
+                                <div>
+                                    <ul>
+                                        <li>
+                                            Objective: 
+                                            <field string="Objectives" name="obj_count"/>
+                                        </li>
+                                        <li>
+                                            Measure: 
+                                            <field string="Measure" name="meas_count"/>
+                                        </li>
+                                        <li>
+                                            Initiative: 
+                                            <field string="Initiatives" name="init_count"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                       </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
 
     <!-- actions opening views on models -->
     
@@ -66,7 +101,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">bsc.bsc</field>
         <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">kanban,tree,form</field>
         <!-- <field name="view_id" eval="view_holiday_status_normal_tree"/> -->
         <!-- <field name="search_view_id" ref="view_bsc_objective_filter"/> -->
     </record>
