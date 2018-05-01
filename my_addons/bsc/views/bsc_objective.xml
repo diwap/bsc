@@ -39,7 +39,13 @@
                         </group>
                         <notebook>
                             <page string="Measure">
-                                <field name="measure_objective_ids" context="{'default_measure_objective_ids':id}"/>
+                                <field name="measure_objective_ids" context="{'default_measure_objective_ids':id}">
+                                    <tree editable="true">
+                                        <field name="title"/>
+                                        <field name="owner"/>
+                                        <field name="description"/>
+                                    </tree>
+                                </field>
                             </page>
                             <!-- <page string="Recommendation">
                                 <field name="recommendation_objective_ids" context="{'form_view_ref': 'bsc.bsc_form_recommendation_objective'}"/>

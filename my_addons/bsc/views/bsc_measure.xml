@@ -42,7 +42,7 @@
                             </page> -->
                             <page string="Initatives">
                                 <field name="initiative_measure_ids" context="{'default_measure_id':id}">
-                                    <tree>
+                                    <tree editable="true">
                                         <field name="title"/>
                                         <field name="owner"/>
                                         <field name="budget"/>

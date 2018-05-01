@@ -46,6 +46,7 @@
                             <group>
                                 <field name="start_date"/>
                                 <field name="end_date"/>
+                                <field name="state" inivisible='1'/>
                             </group>
                         </group>
                         <group>
@@ -87,6 +88,7 @@
                             <group>
                                 <field name="start_date"/>
                                 <field name="end_date"/>
+                                <field name="state" inivisible='1'/>
                             </group>
                         </group>
                         <group>

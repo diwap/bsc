@@ -40,7 +40,7 @@
             <notebook>
               <page string="Objectives">
                 <field name="objective_bsc_ids" context="{'default_objective_bsc_ids':id}">
-                  <tree>
+                  <tree editable="true">
                     <field name="title"/>
                     <field name="owner"/>
                     <field name="description"/>
