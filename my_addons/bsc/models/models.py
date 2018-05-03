@@ -35,6 +35,7 @@ class Bsc(models.Model):
 	company_id = fields.Many2one('res.partner',"Company Name")
 	category = fields.Selection(CATEGORY_SELECTION, string="Category", default='financial')
 	objective_bsc_ids = fields.One2many('bsc.objective','objective_bsc_ids')
+	measure_bsc_ids = fields.One2many('bsc.measure','measure_bsc_ids')
 
 	color = fields.Integer(string='Color Index', help="The color of the channel")
 	obj_count = fields.Integer("Count Objectives", compute="_objectives_count")
@@ -51,11 +52,12 @@ class Bsc(models.Model):
 	
 	def _measures_count(self):
 		for rec in self:
-			rec.meas_count = rec.env['bsc.measure'].search_count([('measure_objective_ids.objective_bsc_ids.name', '=', rec.name)])
+			rec.meas_count = rec.env['bsc.measure'].search_count([('measure_bsc_ids.name', '=', rec.name)])
 
 	def _initiatives_count(self):
 		for rec in self:
-			rec.init_count = rec.env['bsc.initiative'].search_count([('measure_id.measure_objective_ids.objective_bsc_ids.name', '=', rec.name)])
+			rec.init_count = 0
+			# rec.init_count = rec.env['bsc.initiative'].search_count([('measure_id.measure_objective_ids.objective_bsc_ids.name', '=', rec.name)])
 
 class Objective(models.Model):
 	_name = 'bsc.objective'
@@ -82,11 +84,9 @@ class Objective(models.Model):
 		string= "Owner",
 		default=lambda self: self.env.uid)
 	objective_bsc_ids = fields.Many2one('bsc.bsc',"BSC")
-	# recommendation_objective_ids = fields.One2many('bsc.recommendation','recommendation_objective_ids')
 	analysis = fields.Text("Analysis")
 	description = fields.Text("Description")
 	collaborator_ids = fields.Many2many('res.users', string="Collaborators")
-	measure_objective_ids = fields.One2many('bsc.measure','measure_objective_ids')
 
 class Measure(models.Model):
 	_name = 'bsc.measure'
@@ -103,7 +103,7 @@ class Measure(models.Model):
 		default=lambda self: self.env.uid)
 	collaborator_ids = fields.Many2many('res.users', string="Collaborators")
 	description = fields.Text("Description")
-	measure_objective_ids = fields.Many2one('bsc.objective',"Objective")
+	measure_bsc_ids = fields.Many2one('bsc.bsc',"Objective")
 
 class Initiative(models.Model):
 	_name = 'bsc.initiative'

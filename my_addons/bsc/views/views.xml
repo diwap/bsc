@@ -47,6 +47,15 @@
                   </tree>
                 </field>
               </page>
+              <page string="Measures">
+                <field name="measure_bsc_ids" context="{'default_measure_bsc_ids':id}">
+                  <tree editable="true">
+                    <field name="title"/>
+                    <field name="owner"/>
+                    <field name="description"/>
+                  </tree>
+                </field>
+              </page>
             </notebook>
           </sheet>
         </form>
