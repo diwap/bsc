@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="BscDashboardTemplate">
+        <div class="bsc_dashboard_home_page">
+            <div class="list-group">
+                <t t-foreach = 'list' t-as='l'>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3">
+                            <button type="button" class="list-group-item">
+                                <span><t t-esc = 'name'/></span>
+                            </button>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <t t-foreach = 'objectives' t-as='o'>
+                                <button type="button" class="list-group-item">
+                                    <span><t t-esc = 'name'/></span>
+                                </button>
+                            </t>
+                        </div>
+                        <!-- <div class="col-md-4">
+                            <div class="list-group">
+                                <t t-foreach = 'list'>
+                            </div>
+                        </div> -->
+                        <!-- <li>
+                            <span t-att-data-path='l.path'><t t-esc = 'category'/></span>
+                        </li> -->
+                    </div>
+                </t>
+            </div>
+        </div>
+    </t>
+</templates>

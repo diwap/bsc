@@ -2,8 +2,15 @@
     <template id="assets_backend" name="bsc_bsc assets" inherit_id="web.assets_backend">
         <xpath expr="." position="inside">
             <link rel="stylesheet" href="/bsc/static/src/css/bsc_style.css"/>
+            <script type="text/javascript" src="/bsc/static/src/js/bsc_dashboard.js"/>
         </xpath>
     </template>
+
+    <record id="dashboard_action_bsc_bsc" model="ir.actions.client">
+        <field name="name">Dashboard</field>
+        <field name="tag">bsc_dashboard</field>
+        <field name="target">main</field>
+    </record>
     <!-- Case BSC dashboard view -->
     <!-- <record id="action_bsc_dashboard_objective" model="ir.actions.act_window">
         <field name="name">Objectives</field>
@@ -36,6 +43,6 @@
         <field name="view_mode">kanban,form</field>
         <field name="view_id" eval="view_holiday_status_normal_tree"/>
         <field name="search_view_id" ref="view_bsc_objective_filter"/>
-    </record>
-    <menuitem name="Dashboard" id="bsc_dashboard_menu_root" web_icon="bsc,static/description/dashboard.png" action="dashboard_action_bsc_bsc" sequence="-1"/> -->
+    </record> -->
+    <menuitem name="Dashboard" id="bsc_dashboard_menu_root" web_icon="bsc,static/description/dashboard.png" action="dashboard_action_bsc_bsc" sequence="-1"/>
 </odoo>

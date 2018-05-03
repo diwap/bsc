@@ -39,4 +39,5 @@
         'views/bsc_action.xml',
         'views/bsc_dashboard.xml'
     ],
+    'qweb': ['static/src/xml/bsc_dashboard.xml']
 }
