@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
 from datetime import date, datetime
 
 STATES = [
@@ -9,6 +9,16 @@ STATES = [
     ('completed', 'Completed'),
 	('missed', 'Deadline Missed')
 ]
+
+class Person:
+	def __init__(self, d1, d2):
+		self.d1 = d1
+		self.d2 = d2
+
+	def check_date(self):
+		if self.d1 and self.d2:
+			if self.d1 > self.d2:
+				raise ValidationError("Your start date is greater than end date. \nStart Date: %s \nEnd Date: %s"%(self.d1, self.d2))
 
 class Bsc(models.Model):
 	_name = 'bsc.bsc'
@@ -131,6 +141,12 @@ class Initiative(models.Model):
 			except ZeroDivisionError:
 				rec.percent_complete = 0
 
+	@api.onchange('end_date')
+	def _check_date(self):
+		for rec in self:
+			ndate = Person(rec.start_date, rec.end_date)
+			return ndate.check_date()
+
 	def _get_completed_date(self):
 		for rec in self:
 			if rec.percent_complete == 100:
@@ -242,6 +258,12 @@ class Action(models.Model):
 	completed_status = fields.Boolean("Completed Status", readonly=True)
 	completed_date = fields.Date("Completed Date")
 	state = fields.Selection(STATES, string='Completed Status', default='initial', readonly=True, index=True)
+
+	@api.onchange('end_date')
+	def _check_date(self):
+		for rec in self:
+			ndate = Person(rec.start_date, rec.end_date)
+			return ndate.check_date()
 
 	def toggle_status(self):
 		for rec in self:
