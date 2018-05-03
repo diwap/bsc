@@ -36,6 +36,7 @@ class Bsc(models.Model):
 	category = fields.Selection(CATEGORY_SELECTION, string="Category", default='financial')
 	objective_bsc_ids = fields.One2many('bsc.objective','objective_bsc_ids')
 	measure_bsc_ids = fields.One2many('bsc.measure','measure_bsc_ids')
+	initiative_bsc_ids = fields.One2many('bsc.initiative','initiative_bsc_ids')
 
 	color = fields.Integer(string='Color Index', help="The color of the channel")
 	obj_count = fields.Integer("Count Objectives", compute="_objectives_count")
@@ -56,8 +57,7 @@ class Bsc(models.Model):
 
 	def _initiatives_count(self):
 		for rec in self:
-			rec.init_count = 0
-			# rec.init_count = rec.env['bsc.initiative'].search_count([('measure_id.measure_objective_ids.objective_bsc_ids.name', '=', rec.name)])
+			rec.init_count = rec.env['bsc.initiative'].search_count([('initiative_bsc_ids.name', '=', rec.name)])
 
 class Objective(models.Model):
 	_name = 'bsc.objective'
@@ -97,7 +97,6 @@ class Measure(models.Model):
 	analysis = fields.Text("Analysis")
 	# recommendation_measure_ids = fields.One2many('bsc.recommendation','recommendation_measure_ids')
 	measure_data_measure_ids = fields.One2many('bsc.measuredata','measure_data_measure_ids')
-	initiative_measure_ids = fields.One2many('bsc.initiative','measure_id')
 	owner = fields.Many2one('res.users',
 		string= "Owner",
 		default=lambda self: self.env.uid)
@@ -111,7 +110,7 @@ class Initiative(models.Model):
 	_rec_name = 'title'
 
 	title = fields.Char("Title", required=True)
-	measure_id = fields.Many2one('bsc.measure',"Measure")
+	initiative_bsc_ids = fields.Many2one('bsc.bsc',"BSC")
 	owner = fields.Many2one('res.users',
 		string= "Owner",
 		default=lambda self: self.env.uid)

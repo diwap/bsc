@@ -56,6 +56,18 @@
                   </tree>
                 </field>
               </page>
+              <page string="Initatives">
+                <field name="initiative_bsc_ids" context="{'default_initiative_bsc_ids':id}">
+                    <tree editable="true">
+                        <field name="title"/>
+                        <field name="owner"/>
+                        <field name="budget"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="percent_complete"/>
+                    </tree>
+                </field>
+              </page>
             </notebook>
           </sheet>
         </form>

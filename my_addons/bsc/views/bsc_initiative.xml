@@ -37,7 +37,7 @@
                         </group>
                         <group>
                             <group>
-                                <field name="measure_id"/>
+                                <field name="initiative_bsc_ids"/>
                                 <field name="budget"/>
                                 <field name="percent_complete"/>
                                 <field name="completed_date"/>
