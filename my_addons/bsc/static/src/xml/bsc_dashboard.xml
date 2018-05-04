@@ -1,35 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
     <t t-name="BscDashboardTemplate">
-        <div class="bsc_dashboard_home_page">
-            <h1>BSC View</h1>
+        <div class="bsc_dashboard_home_page container-fluid">
+            <!-- <h2>BSC View</h2> -->
             <div class="list-group">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 hidden-xs">
+                        <h3>BSC View</h3>
+                    </div>
+                    <div class="col-md-3 col-sm-3 hidden-xs">
+                        <h3>Objectives</h3>
+                    </div>
+                    <div class="col-md-3 col-sm-3 hidden-xs">
+                        <h3>Measures</h3>
+                    </div>
+                    <div class="col-md-3 col-sm-3 hidden-xs">
+                        <h3>Initiatives</h3>
+                    </div>
+                </div>
                 <t t-foreach = 'bsc' t-as='l'>
                     <div class="row">
                         <div class="col-md-3 col-sm-3">
-                            <button type="button" class="list-group-item list-group-item-success">
+                            <t t-set="bsc_id" t-value='l.id'/>
+                            <a t-attf-href="web#id={{bsc_id}}&amp;view_type=form&amp;model=bsc.bsc" class="list-group-item list-group-item-success">
                                 <span><t t-esc = 'name'/> - <i><t t-esc= 'category'/></i></span>
-                            </button>
+                            </a>
                         </div>
                         <div class="col-md-3 col-sm-3">
                             <t t-foreach = 'objectives' t-as='o'>
-                                <button type="button" class="list-group-item list-group-item-info">
+                                <t t-set="obj_id" t-value='o.id'/>
+                                <a t-attf-href="web#id={{obj_id}}&amp;view_type=form&amp;model=bsc.objective" class="list-group-item list-group-item-info">
                                     <span><t t-esc = 'o.name'/></span>
-                                </button>
+                                </a>
                             </t>
                         </div>
                         <div class="col-md-3 col-sm-3">
                             <t t-foreach = 'measure' t-as='m'>
-                                <button type="button" class="list-group-item list-group-item-warning">
+                                <t t-set="m_id" t-value='m.id'/>
+                                <a t-attf-href="web#id={{m_id}}&amp;view_type=form&amp;model=bsc.measure" class="list-group-item list-group-item-warning">
                                     <span><t t-esc = 'm.title'/></span>
-                                </button>
+                                </a>
                             </t>
                         </div>
                         <div class="col-md-3 col-sm-3">
                             <t t-foreach = 'initiative' t-as='i'>
-                                <button type="button" class="list-group-item list-group-item-default">
+                                <t t-set="ini_id" t-value='i.id'/>
+                                <a t-attf-href="web#id={{ini_id}}&amp;view_type=form&amp;model=bsc.initiative" class="list-group-item list-group-item-default">
                                     <span><t t-esc = 'i.title'/></span>
-                                </button>
+                                    <span class="badge"><t t-esc='i.percent_complete'/> %</span>
+                                </a>
                             </t>
                         </div>
                     </div>
