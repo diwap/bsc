@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+    <!-- BSC dashboard link css and javascript -->
     <template id="assets_backend" name="bsc_bsc assets" inherit_id="web.assets_backend">
         <xpath expr="." position="inside">
             <link rel="stylesheet" href="/bsc/static/src/css/bsc_style.css"/>
@@ -7,12 +8,14 @@
         </xpath>
     </template>
 
+    <!-- BSC dashboard action view -->
     <record id="dashboard_action_bsc_bsc" model="ir.actions.client">
         <field name="name">Dashboard</field>
         <field name="tag">bsc_dashboard</field>
         <field name="target">main</field>
     </record>
     
+    <!-- BSC dashboard root menuitem -->
     <menuitem name="Dashboard"
         id="bsc_dashboard_menu_root"
         web_icon="bsc,static/description/dashboard.png"

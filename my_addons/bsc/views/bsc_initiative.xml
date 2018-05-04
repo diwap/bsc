@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+        <!-- BSC initiative tree view -->
         <record model="ir.ui.view" id="bsc_tree_initiative">
             <field name="name">BSC Initiative</field>
             <field name="model">bsc.initiative</field>
@@ -15,6 +16,8 @@
                 </tree>
             </field>
         </record>
+
+        <!-- BSC initiative main form view -->
         <record model="ir.ui.view" id="bsc_form_initiative">
             <field name="name">BSC Initiative</field>
             <field name="model">bsc.initiative</field>
@@ -51,11 +54,14 @@
                         </group>
                         <notebook>
                             <page string="Milestone">
+                                <!-- Context is used to set value in field from parent view to child view.  -->
+                                <!-- Context is used to open custom form when creating and editing relational field. -->
                                 <field name="milestone_initiative_ids" context="{'default_milestone_initiative_ids':id,
                                                                                     'form_view_ref':'bsc.bsc_form_milestone_for_initiative'}"/>
                             </page>
                         </notebook>
                     </sheet>
+                    <!-- Mail chatter -->
                     <sheet position="after">
                         <div class="oe_chatter">
                             <field name="message_follower_ids"
@@ -66,6 +72,8 @@
                 </form>
             </field>
         </record>
+
+        <!-- BSC initiative filter -->
         <record id="view_bsc_initiative_filter" model="ir.ui.view">
             <field name="name">bsc.initiative.filter</field>
             <field name="model">bsc.initiative</field>
@@ -79,6 +87,8 @@
                 </search>
             </field>
         </record>
+
+        <!-- BSC initiative action window -->
         <record id="action_bsc_initiative" model="ir.actions.act_window">
             <field name="name">BSC Initiative</field>
             <field name="type">ir.actions.act_window</field>
@@ -87,6 +97,8 @@
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_bsc_initiative_filter"/>
         </record>
+
+        <!-- BSC initiative menuitem -->
         <menuitem id="menu_bsc_initiative"
                 name="Initiative"
                 parent="bsc_menu_root" 

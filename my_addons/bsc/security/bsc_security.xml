@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- Create root menu to show option of user role for BSC -->
     <record model="ir.module.category" id="bsc_bsc_module_management">
         <field name="name">BSC</field>
         <field name="description">User access level for Balance Score Card</field>
         <field name="sequence">10</field>
     </record>
-
+    
+    <!-- Create menu for user level access role -->
     <record id="group_bsc_bsc_user" model="res.groups">
         <field name="name">User</field>
         <field name="category_id" ref="bsc.bsc_bsc_module_management"/>
         <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
     </record>
     
+    <!-- Create menu for manager level access role -->
     <record id="group_bsc_bsc_manager" model="res.groups">
         <field name="name">Manager</field>
         <field name="category_id" ref="bsc.bsc_bsc_module_management"/>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+        <!-- BSC measure tree view -->
         <record model="ir.ui.view" id="bsc_tree_measure">
             <field name="name">BSC Measure</field>
             <field name="model">bsc.measure</field>
@@ -12,6 +13,8 @@
                 </tree>
             </field>
         </record>
+
+        <!-- BSC measure form view -->
         <record model="ir.ui.view" id="bsc_form_contact">
             <field name="name">BSC Measure</field>
             <field name="model">bsc.measure</field>
@@ -36,6 +39,7 @@
                             <field name="analysis"/>
                             <field name="description"/>
                         </group>
+                        <!-- notebook is used to show in tab panels -->
                         <notebook>
                             <page string="Measure Data">
                                 <field name="measure_data_measure_ids" context="{'default_measure_data_measure_ids':id}">
@@ -59,6 +63,8 @@
                 </form>
             </field>
         </record>
+
+        <!-- BSC measure filter -->
         <record id="view_bsc_measure_filter" model="ir.ui.view">
             <field name="name">bsc.measure.filter</field>
             <field name="model">bsc.measure</field>
@@ -72,6 +78,8 @@
                 </search>
             </field>
         </record>
+
+        <!-- BSC measure action window -->
         <record id="action_bsc_measure" model="ir.actions.act_window">
             <field name="name">BSC Measure</field>
             <field name="type">ir.actions.act_window</field>
@@ -80,6 +88,8 @@
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_bsc_measure_filter"/>
         </record>
+
+        <!-- BSC measure menuitem -->
         <menuitem id="menu_bsc_measure"
                 name="Measure"
                 parent="bsc_menu_root" 

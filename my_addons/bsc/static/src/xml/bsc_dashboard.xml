@@ -20,7 +20,9 @@
                 <t t-foreach = 'bsc' t-as='l'>
                     <div class="row">
                         <div class="col-md-3 col-sm-3">
-                            <t t-set="bsc_id" t-value='l.id'/>
+                            <!-- t-set set value in variable which can be retrieved later -->
+                            <t t-set="bsc_id" t-value='l.id'/> 
+                            <!-- t-attf-$ is used to add proverty in HTML tag -->
                             <a t-attf-href="web#id={{bsc_id}}&amp;view_type=form&amp;model=bsc.bsc" class="list-group-item list-group-item-success">
                                 <span><t t-esc = 'name'/> - <i><t t-esc= 'category'/></i></span>
                             </a>

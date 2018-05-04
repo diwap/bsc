@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+        <!-- BSC measuredata tree view -->
         <record model="ir.ui.view" id="bsc_tree_measuredata">
             <field name="name">BSC Measuredata</field>
             <field name="model">bsc.measuredata</field>
@@ -14,6 +15,8 @@
                 </tree>
             </field>
         </record>
+
+        <!-- BSC measuredata form view -->
         <record model="ir.ui.view" id="bsc_form_measuredata">
             <field name="name">BSC Measuredata</field>
             <field name="model">bsc.measuredata</field>
@@ -37,6 +40,8 @@
                 </form>
             </field>
         </record>
+
+        <!-- BSC measuredata filter -->
         <record id="view_bsc_measuredata_filter" model="ir.ui.view">
             <field name="name">bsc.measuredata.filter</field>
             <field name="model">bsc.measuredata</field>
@@ -49,6 +54,8 @@
                 </search>
             </field>
         </record>
+
+        <!-- BSC measuredata graph view -->
         <record id="view_bsc_measuredata_graph" model="ir.ui.view">
             <field name="name">report.bsc.masuredata.graph</field>
             <field name="model">bsc.measuredata</field>
@@ -60,6 +67,8 @@
                 </graph>
             </field>
         </record>
+
+        <!-- BSC measuredata action window -->
         <record id="action_bsc_measuredata" model="ir.actions.act_window">
             <field name="name">BSC Measure data</field>
             <field name="type">ir.actions.act_window</field>
@@ -68,6 +77,8 @@
             <field name="view_mode">tree,form,graph</field>
             <field name="search_view_id" ref="view_bsc_measuredata_filter"/>
         </record>
+
+        <!-- BSC measuredata menuitem -->
         <menuitem id="menu_bsc_measuredata"
                 name="Measure Data" 
                 parent="bsc_menu_root" 

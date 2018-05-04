@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+        <!-- BSC contact extension to make notebook invisible -->
         <record model="ir.ui.view" id="bsc_edit_contact">
             <field name="name">BSC Contact Edit</field>
             <field name="model">res.partner</field>
@@ -9,6 +10,7 @@
                 <xpath expr="//sheet/notebook" position="attributes">
                     <attribute name="invisible">1</attribute>
                 </xpath>
+                <!-- option to choose if record is customer is added in main form -->
                 <field name="lang" position="after">
                     <field name="customer"/>
                 </field>

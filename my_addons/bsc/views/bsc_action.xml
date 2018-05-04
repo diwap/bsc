@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+        <!-- BSC action tree view -->
         <record model="ir.ui.view" id="bsc_tree_action">
             <field name="name">BSC Action</field>
             <field name="model">bsc.action</field>
@@ -18,6 +19,8 @@
                 </tree>
             </field>
         </record>
+
+        <!-- BSC action main form view -->
         <record model="ir.ui.view" id="bsc_form_action">
             <field name="name">BSC Action</field>
             <field name="model">bsc.action</field>
@@ -56,6 +59,8 @@
                 </form>
             </field>
         </record>
+
+        <!-- BSC action form view for bsc_initiative -->
         <record model="ir.ui.view" id="bsc_form_action_initiative">
             <field name="name">BSC Action</field>
             <field name="model">bsc.action</field>
@@ -90,6 +95,8 @@
                 </form>
             </field>
         </record>
+
+        <!-- BSC action form view for milestone -->
         <record model="ir.ui.view" id="bsc_form_action_milestone">
             <field name="name">BSC Action</field>
             <field name="model">bsc.action</field>
@@ -124,6 +131,8 @@
                 </form>
             </field>
         </record>
+
+        <!-- BSC action filter -->
         <record id="view_bsc_action_filter" model="ir.ui.view">
             <field name="name">bsc.action.filter</field>
             <field name="model">bsc.action</field>
@@ -137,6 +146,8 @@
                 </search>
             </field>
         </record>
+
+        <!-- BSC action action for reseting complete_status -->
         <record id="action_server_reset_completed" model="ir.actions.server">
             <field name="name">Reset Completed Status</field>
             <field name="type">ir.actions.server</field>
@@ -145,6 +156,8 @@
             <field name="state">code</field>
             <field name="code">records.reset_complete()</field>
         </record>
+
+        <!-- BSC action action window -->
         <record id="action_bsc_action" model="ir.actions.act_window">
             <field name="name">BSC Action</field>
             <field name="type">ir.actions.act_window</field>
@@ -153,6 +166,8 @@
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_bsc_action_filter"/>
         </record>
+
+        <!-- BSC action menuitem -->
         <menuitem id="menu_bsc_action"
                 name="Action" 
                 parent="bsc_menu_root" 

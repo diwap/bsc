@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+        <!-- BSC objective tree view -->
         <record model="ir.ui.view" id="bsc_tree_objective">
             <field name="name">BSC Objectives</field>
             <field name="model">bsc.objective</field>
@@ -13,6 +14,8 @@
                 </tree>
             </field>
         </record>
+
+        <!-- BSC objective form view -->
         <record model="ir.ui.view" id="bsc_form_objective">
             <field name="name">BSC Objectives</field>
             <field name="model">bsc.objective</field>
@@ -48,6 +51,8 @@
                 </form>
             </field>
         </record>
+
+        <!-- BSC objective filter -->
         <record id="view_bsc_objective_filter" model="ir.ui.view">
             <field name="name">bsc.objective.filter</field>
             <field name="model">bsc.objective</field>
@@ -60,6 +65,8 @@
                 </search>
             </field>
         </record>
+
+        <!-- BSC objective action window -->
         <record id="action_bsc_objective" model="ir.actions.act_window">
             <field name="name">BSC Objective</field>
             <field name="type">ir.actions.act_window</field>
@@ -68,6 +75,8 @@
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_bsc_objective_filter"/>
         </record>
+
+        <!-- BSC objective menuitem -->
         <menuitem id="menu_bsc_objective"
                 name="Objective" 
                 parent="bsc_menu_root" 

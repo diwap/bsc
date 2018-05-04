@@ -1,4 +1,8 @@
 odoo.define('bsc.bsc_dashboard', function (require) {
+    /*
+    Query data from model and call method 
+    Used ES6 style
+    */
     "use strict";
     var core = require('web.core');
     var rpc = require('web.rpc');
@@ -14,7 +18,7 @@ odoo.define('bsc.bsc_dashboard', function (require) {
             var self = this;
             rpc.query({
                 model: 'bsc.dashboard',
-                method: 'get_bsc_data',
+                method: 'get_bsc_data', // call python function
                 args: [],
             }).then((res) => {
                 console.log(res)

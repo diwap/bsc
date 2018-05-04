@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+        <!-- BSC milestone tree view -->
         <record model="ir.ui.view" id="bsc_tree_milestone">
             <field name="name">BSC Milestone</field>
             <field name="model">bsc.milestone</field>
@@ -17,6 +18,8 @@
                 </tree>
             </field>
         </record>
+
+        <!-- BSC milestone main form view -->
         <record model="ir.ui.view" id="bsc_form_milestone">
             <field name="name">BSC Milestone</field>
             <field name="model">bsc.milestone</field>
@@ -66,6 +69,8 @@
                 </form>
             </field>
         </record>
+
+        <!-- BSC milestone form view for initiative -->
         <record model="ir.ui.view" id="bsc_form_milestone_for_initiative">
             <field name="name">BSC Initiative Milestone </field>
             <field name="model">bsc.milestone</field>
@@ -110,6 +115,8 @@
                 </form>
             </field>
         </record>
+
+        <!-- BSC milestone filter -->
         <record id="view_bsc_milestone_filter" model="ir.ui.view">
             <field name="name">bsc.milestone.filter</field>
             <field name="model">bsc.milestone</field>
@@ -122,6 +129,8 @@
                 </search>
             </field>
         </record>
+
+        <!-- BSC milestone action window -->
         <record id="action_bsc_milestone" model="ir.actions.act_window">
             <field name="name">BSC Milestone</field>
             <field name="type">ir.actions.act_window</field>
@@ -130,6 +139,8 @@
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_bsc_milestone_filter"/>
         </record>
+
+        <!-- BSC milestone menuitem -->
         <menuitem id="menu_bsc_milestone"
                 name="Milestone" 
                 parent="bsc_menu_root" 
