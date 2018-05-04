@@ -191,13 +191,11 @@ class MeasureData(models.Model):
 			except ZeroDivisionError:
 				val.variance = 0
 
-	@api.onchange('target','actual')
+	@api.onchange('target')
 	def _validate_price(self):
 		for rec in self:
 			if rec.target < 0:
 				rec.target = 0
-			if rec.actual < 0:
-				rec.actual = 0
 
 class Milestone(models.Model):
 	_name = 'bsc.milestone'
