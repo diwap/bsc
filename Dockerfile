@@ -48,4 +48,4 @@ ENV ODOO_RC /etc/odoo/odoo.conf
 USER odoo
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["odoo"]
+CMD ["odoo -d bsc -u /mnt/extra-addons/bsc --dev=all"]
