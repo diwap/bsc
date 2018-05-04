@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
   <data>
-    <!-- explicit list view definition -->
-    
     <record model="ir.ui.view" id="bsc_tree_bsc">
       <field name="name">BSC Contact</field>
       <field name="model">bsc.bsc</field>
@@ -20,22 +18,22 @@
       <field name="arch" type="xml">
         <form>
           <sheet>
-          <div class="oe_button_box" name="button_box">
-            <button name="toggle_active" type="object" groups="base.group_user"
-              class="oe_stat_button" icon="fa-archive">
-              <field name="active" widget="boolean_button"
-                options='{"terminology": "archive"}'/>
-            </button>
-          </div>
+            <div class="oe_button_box" name="button_box">
+              <button name="toggle_active" type="object" groups="base.group_user"
+                class="oe_stat_button" icon="fa-archive">
+                <field name="active" widget="boolean_button"
+                  options='{"terminology": "archive"}'/>
+              </button>
+            </div>
             <group>
               <group>
                 <div class="oe_title">
-                    <h1>
-                        <field name="name" default_focus="1" placeholder="BSC Name"/>
-                    </h1>
-                    <div class="o_row">
-                        <field name="company_id" placeholder="Company Name"/>
-                    </div>
+                  <h1>
+                    <field name="name" default_focus="1" placeholder="BSC Name"/>
+                  </h1>
+                  <div class="o_row">
+                    <field name="company_id" placeholder="Company Name"/>
+                  </div>
                 </div>
               </group>
             </group>
@@ -65,14 +63,14 @@
               </page>
               <page string="Initatives">
                 <field name="initiative_bsc_ids" context="{'default_initiative_bsc_ids':id}">
-                    <tree editable="true">
-                        <field name="title"/>
-                        <field name="owner"/>
-                        <field name="budget"/>
-                        <field name="start_date"/>
-                        <field name="end_date"/>
-                        <field name="percent_complete"/>
-                    </tree>
+                  <tree editable="true">
+                    <field name="title"/>
+                    <field name="owner"/>
+                    <field name="budget"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="percent_complete"/>
+                  </tree>
                 </field>
               </page>
             </notebook>
@@ -80,61 +78,56 @@
         </form>
       </field>
     </record>
+
     <record id="bsc_bsc_dashboard_view_kanban" model="ir.ui.view" >
-        <field name="name">bsc.bsc.dashboard</field>
-        <field name="model">bsc.bsc</field>
-        <field name="arch" type="xml">
-            <kanban class="o_bsc_dashboard_kanban"> 
-                <field name="name"/>
-                <field name="obj_count"/>
-                <templates>
-                    <t t-name="kanban-box">
-                       <div class="oe_kanban_global_click o_bsc_dashboard_kanban">
-                            <div class="oe_kanban_details">
-                                <strong class="oe_partner_heading"><h3><field name="name"/></h3></strong>
-                                <div>
-                                    <ul>
-                                        <li>
-                                            Objective: 
-                                            <field string="Objectives" name="obj_count"/>
-                                        </li>
-                                        <li>
-                                            Measure: 
-                                            <field string="Measure" name="meas_count"/>
-                                        </li>
-                                        <li>
-                                            Initiative: 
-                                            <field string="Initiatives" name="init_count"/>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                       </div>
-                    </t>
-                </templates>
-            </kanban>
-        </field>
+      <field name="name">bsc.bsc.dashboard</field>
+      <field name="model">bsc.bsc</field>
+      <field name="arch" type="xml">
+        <kanban class="o_bsc_dashboard_kanban"> 
+          <field name="name"/>
+          <field name="obj_count"/>
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_global_click o_bsc_dashboard_kanban">
+                <div class="oe_kanban_details">
+                  <strong class="oe_partner_heading">
+                    <h3>
+                        <field name="name"/>
+                    </h3>
+                  </strong>
+                  <div>
+                    <ul>
+                      <li>
+                        Objective: 
+                        <field string="Objectives" name="obj_count"/>
+                      </li>
+                      <li>
+                        Measure: 
+                        <field string="Measure" name="meas_count"/>
+                      </li>
+                      <li>
+                        Initiative: 
+                        <field string="Initiatives" name="init_count"/>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
     </record>
 
-    <!-- actions opening views on models -->
-    
-    <!-- <record model="ir.actions.act_window" id="bsc_action_contact">
-      <field name="name">BSC</field>
-      <field name="res_model">bsc.bsc</field>
-      <field name="view_mode">tree,form</field>
-    </record> -->
-
     <record id="action_bsc_bsc" model="ir.actions.act_window">
-        <field name="name">BSC</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">bsc.bsc</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">kanban,tree,form</field>
-        <field name="context">
-          {'search_default_bsc_category':1}
-        </field>
-        <!-- <field name="view_id" eval="view_holiday_status_normal_tree"/> -->
-        <!-- <field name="search_view_id" ref="view_bsc_bsc_filter"/> -->
+      <field name="name">BSC</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">bsc.bsc</field>
+      <field name="view_type">form</field>
+      <field name="view_mode">kanban,tree,form</field>
+      <field name="context">
+        {'search_default_bsc_category':1}
+      </field>
     </record>
 
     <record id="bsc_bsc_filter_label" model="ir.ui.view">
@@ -147,36 +140,23 @@
         </search>
       </field>
     </record>
-    
+  
+    <menuitem name="BSC"
+      id="bsc_menu_root"
+      web_icon="bsc,static/description/icon.png"
+      sequence="1"/>
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="bsc.action_server">
-      <field name="name">bsc server</field>
-      <field name="model_id" ref="model_bsc_bsc"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
+    <menuitem name="Contacts"
+      id="bsc_menu_contact"
+      parent="bsc_menu_root"
+      action="base.action_partner_form"
+      sequence="1"/>
 
-    <!-- Top menu item -->
-    
-    <menuitem name="BSC" id="bsc_menu_root" web_icon="bsc,static/description/icon.png" sequence="1"/>
-    
-    <!-- menu categories -->
-    
-    <!-- <menuitem name="Contacts" id="bsc_menu_contact" parent="bsc_menu_root" action="bsc_action_contact"/> -->
-
-    <menuitem name="Contacts" id="bsc_menu_contact" parent="bsc_menu_root" action="base.action_partner_form" sequence="1"/>
-    <menuitem name="BSC" id="bsc_menu_bsc" parent="bsc_menu_root" action="action_bsc_bsc" sequence="2"/>
-    
-    <!-- actions -->
-    
+    <menuitem name="BSC"
+      id="bsc_menu_bsc"
+      parent="bsc_menu_root"
+      action="action_bsc_bsc"
+      sequence="2"/>
+      
   </data>
 </odoo>

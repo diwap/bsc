@@ -13,18 +13,11 @@
 
     'author': "Diwakar Pandey",
     'website': "http://www.linkedin.in/diwap",
-
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
-    # for the full list
     'category': 'management',
     'version': '11.1',
     'application': True,
-
-    # any module necessary for this one to work correctly
     'depends': ['base','mail'],
 
-    # always loaded
     'data': [
         'security/bsc_security.xml',
         'security/ir.model.access.csv',
@@ -34,7 +27,6 @@
         'views/bsc_measure.xml',
         'views/bsc_initiative.xml',
         'views/bsc_measuredata.xml',
-        # 'views/bsc_recommendation.xml',
         'views/bsc_milestone.xml',
         'views/bsc_action.xml',
         'views/bsc_dashboard.xml'

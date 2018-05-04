@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# Part of BSC. See LICENSE file for full copyright and licensing details.
 
 from odoo import models, fields, api
 from odoo.exceptions import UserError, ValidationError
@@ -66,21 +67,6 @@ class Objective(models.Model):
 	_inherit = 'mail.thread'
 	_rec_name = 'title'
 
-	# @api.model
-    # def _default_collaborator(self):
-    #     """ When active_model is res.users, the current partners should be attendees """
-    #     partners = self.env.user.partner_id
-    #     active_id = self._context.get('active_id')
-    #     if self._context.get('active_model') == 'res.users' and active_id:
-    #         if active_id not in partners.ids:
-    #             partners |= self.env['res.users'].browse(active_id)
-    #     return partners
-
-	# filter_user = """
-    #             RIGHT JOIN calendar_event_res_partner_rel AS part_rel ON part_rel.calendar_event_id = cal.id
-    #                 AND part_rel.res_partner_id = %s
-    #     """
-
 	title = fields.Char("Title", required=True, track_visibility='onchange')
 	owner = fields.Many2one('res.users',
 		string= "Owner",
@@ -97,7 +83,6 @@ class Measure(models.Model):
 
 	title = fields.Char("Title", required=True, track_visibility='onchange')
 	analysis = fields.Text("Analysis")
-	# recommendation_measure_ids = fields.One2many('bsc.recommendation','recommendation_measure_ids')
 	measure_data_measure_ids = fields.One2many('bsc.measuredata','measure_data_measure_ids')
 	owner = fields.Many2one('res.users',
 		string= "Owner",
@@ -121,13 +106,11 @@ class Initiative(models.Model):
 	description = fields.Text("Description")
 	percent_complete = fields.Float("Percent Complete", compute="_get_percent_complete", track_visibility='always')
 	analysis = fields.Text("Analysis")
-	# recommendation_initiative_ids = fields.One2many('bsc.recommendation','recommendation_initiative_ids')
 	start_date = fields.Date("Start Date", track_visibility='onchange')
 	end_date = fields.Date("End Date", track_visibility='onchange')
 	complete_status = fields.Boolean("Complete Status")
 	completed_date = fields.Date("Completed Date", compute="_get_completed_date")
 	milestone_initiative_ids = fields.One2many('bsc.milestone','milestone_initiative_ids')
-	# action_initiative_ids = fields.One2many('bsc.action','action_initiative_ids')
 
 	state = fields.Selection(STATES, string='Completed Status', default='initial', readonly=True, index=True)
 
@@ -163,16 +146,6 @@ class Initiative(models.Model):
 					rec.write({'state': 'missed'})
 				else:
 					rec.write({'state': 'completed'})
-
-# class Recommendation(models.Model):
-# 	_name = 'bsc.recommendation'
-# 	_rec_name = 'text'
-
-# 	text = fields.Text("Text")
-# 	posted_by = fields.Many2one('res.users',"Posted By")
-# 	recommendation_objective_ids = fields.Many2one('bsc.objective',"Recommendations")
-# 	recommendation_measure_ids = fields.Many2one('bsc.measure',"Recommendation")
-# 	recommendation_initiative_ids = fields.Many2one('bsc.initiative',"Recommendation")
 
 class MeasureData(models.Model):
 	_name = 'bsc.measuredata'

@@ -37,9 +37,6 @@
                             <field name="description"/>
                         </group>
                         <notebook>
-                            <!-- <page string="Recommendation">
-                                <field name="recommendation_measure_ids" context="{'form_view_ref': 'bsc.bsc_form_recommendation_measure'}"/>
-                            </page> -->
                             <page string="Measure Data">
                                 <field name="measure_data_measure_ids" context="{'default_measure_data_measure_ids':id}">
                                     <tree>
@@ -55,7 +52,7 @@
                     <sheet position="after">
                         <div class="oe_chatter">
                             <field name="message_follower_ids"
-                            widget="mail_followers" />
+                                widget="mail_followers" />
                             <field name="message_ids" widget="mail_thread" />
                         </div>
                     </sheet>
@@ -70,8 +67,6 @@
                     <field name="title"/>
                     <field name="owner"/>
                     <group expand="0" string="Group By">
-                        <!-- <filter name="group_title" string="" context="{'group_by':''}"/>
-                        <separator/> -->
                         <filter name="group_owner" string="Owner" context="{'group_by':'owner'}"/>
                     </group>
                 </search>
@@ -83,7 +78,6 @@
             <field name="res_model">bsc.measure</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <!-- <field name="view_id" eval="view_holiday_status_normal_tree"/> -->
             <field name="search_view_id" ref="view_bsc_measure_filter"/>
         </record>
         <menuitem id="menu_bsc_measure"

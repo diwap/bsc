@@ -88,11 +88,6 @@
                                 <field name="state" invisible="1"/>
                             </group>
                         </group>
-                        <!-- <group>
-                            <group>
-                                <field name="milestone_initiative_ids"/>
-                            </group>
-                        </group> -->
                         <group>
                             <field name="collaborator_ids" widget="many2many_tags"/>
                             <field name="analysis"/>
@@ -115,73 +110,13 @@
                 </form>
             </field>
         </record>
-        <!-- <record model="ir.ui.view" id="bsc_form_recommendation_objective">
-            <field name="name">BSC Recommendation</field>
-            <field name="model">bsc.recommendation</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group>
-                            <group>
-                                <field name="recommendation_objective_ids"/>
-                            </group>
-                        </group>
-                        <group>
-                            <field name="posted_by"/>
-                            <field name="text"/>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-        <record model="ir.ui.view" id="bsc_form_recommendation_measure">
-            <field name="name">BSC Recommendation</field>
-            <field name="model">bsc.recommendation</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group>
-                            <group>
-                                <field name="recommendation_measure_ids"/>
-                            </group>
-                        </group>
-                        <group>
-                            <field name="posted_by"/>
-                            <field name="text"/>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-        <record model="ir.ui.view" id="bsc_form_recommendation_initiative">
-            <field name="name">BSC Recommendation</field>
-            <field name="model">bsc.recommendation</field>
-            <field name="arch" type="xml">
-                <form>
-                    <sheet>
-                        <group>
-                            <group>
-                                <field name="recommendation_initiative_ids"/>
-                            </group>
-                        </group>
-                        <group>
-                            <field name="posted_by"/>
-                            <field name="text"/>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record> -->
         <record id="view_bsc_milestone_filter" model="ir.ui.view">
             <field name="name">bsc.milestone.filter</field>
             <field name="model">bsc.milestone</field>
             <field name="arch" type="xml">
                 <search string="Search BSC Milestone">
-                    <!-- <field name=""/> -->
                     <field name="owner"/>
                     <group expand="0" string="Group By">
-                        <!-- <filter name="group_title" string="" context="{'group_by':''}"/>
-                        <separator/> -->
                         <filter name="group_owner" string="Owner" context="{'group_by':'owner'}"/>
                     </group>
                 </search>

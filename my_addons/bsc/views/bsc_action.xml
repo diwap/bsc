@@ -52,14 +52,6 @@
                             <field name="collaborator_ids" widget="many2many_tags"/>
                             <field name="description"/>
                         </group>
-                        <!-- <notebook>
-                            <page string="Measure">
-                                <field name="measure_objective_ids"/>
-                            </page>
-                            <page string="Recommendation">
-                                <field name="recommendation_objective_ids"/>
-                            </page>
-                        </notebook> -->
                     </sheet>
                 </form>
             </field>
@@ -94,14 +86,6 @@
                             <field name="collaborator_ids" widget="many2many_tags"/>
                             <field name="description"/>
                         </group>
-                        <!-- <notebook>
-                            <page string="Measure">
-                                <field name="measure_objective_ids"/>
-                            </page>
-                            <page string="Recommendation">
-                                <field name="recommendation_objective_ids"/>
-                            </page>
-                        </notebook> -->
                     </sheet>
                 </form>
             </field>
@@ -136,14 +120,6 @@
                             <field name="collaborator_ids" widget="many2many_tags"/>
                             <field name="description"/>
                         </group>
-                        <!-- <notebook>
-                            <page string="Measure">
-                                <field name="measure_objective_ids"/>
-                            </page>
-                            <page string="Recommendation">
-                                <field name="recommendation_objective_ids"/>
-                            </page>
-                        </notebook> -->
                     </sheet>
                 </form>
             </field>
@@ -156,8 +132,6 @@
                     <field name="name"/>
                     <field name="owner"/>
                     <group expand="0" string="Group By">
-                        <!-- <filter name="group_title" string="" context="{'group_by':''}"/>
-                        <separator/> -->
                         <filter name="group_owner" string="Owner" context="{'group_by':'owner'}"/>
                     </group>
                 </search>
@@ -177,7 +151,6 @@
             <field name="res_model">bsc.action</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <!-- <field name="view_id" eval="bsc_form_action"/> -->
             <field name="search_view_id" ref="view_bsc_action_filter"/>
         </record>
         <menuitem id="menu_bsc_action"

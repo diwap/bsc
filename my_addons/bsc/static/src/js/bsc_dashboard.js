@@ -10,7 +10,6 @@ odoo.define('bsc.bsc_dashboard', function (require) {
     
     var BscDashboard = Widget.extend({
         className: 'mail_client_home_page',
-        // template: "BscDashboardTemplate",
         start: function(){
             var self = this;
             rpc.query({

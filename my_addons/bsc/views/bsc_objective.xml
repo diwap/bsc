@@ -37,22 +37,11 @@
                             <field name="analysis"/>
                             <field name="description"/>
                         </group>
-                        <!-- <notebook>
-                            <page string="Measure">
-                                <field name="measure_objective_ids" context="{'default_measure_objective_ids':id}">
-                                    <tree editable="true">
-                                        <field name="title"/>
-                                        <field name="owner"/>
-                                        <field name="description"/>
-                                    </tree>
-                                </field>
-                            </page>
-                        </notebook> -->
                     </sheet>
                     <sheet position="after">
                         <div class="oe_chatter">
                             <field name="message_follower_ids"
-                            widget="mail_followers" />
+                                widget="mail_followers" />
                             <field name="message_ids" widget="mail_thread" />
                         </div>
                     </sheet>
@@ -64,11 +53,8 @@
             <field name="model">bsc.objective</field>
             <field name="arch" type="xml">
                 <search string="Search BSC Objective">
-                    <!-- <field name=""/> -->
                     <field name="owner"/>
                     <group expand="0" string="Group By">
-                        <!-- <filter name="group_title" string="" context="{'group_by':''}"/>
-                        <separator/> -->
                         <filter name="group_owner" string="Owner" context="{'group_by':'owner'}"/>
                     </group>
                 </search>
@@ -80,7 +66,6 @@
             <field name="res_model">bsc.objective</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <!-- <field name="view_id" eval="view_holiday_status_normal_tree"/> -->
             <field name="search_view_id" ref="view_bsc_objective_filter"/>
         </record>
         <menuitem id="menu_bsc_objective"
