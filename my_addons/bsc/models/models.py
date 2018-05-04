@@ -81,7 +81,7 @@ class Objective(models.Model):
     #                 AND part_rel.res_partner_id = %s
     #     """
 
-	title = fields.Char("Title", required=True)
+	title = fields.Char("Title", required=True, track_visibility='onchange')
 	owner = fields.Many2one('res.users',
 		string= "Owner",
 		default=lambda self: self.env.uid)
@@ -95,7 +95,7 @@ class Measure(models.Model):
 	_inherit = 'mail.thread'
 	_rec_name = 'title'
 
-	title = fields.Char("Title", required=True)
+	title = fields.Char("Title", required=True, track_visibility='onchange')
 	analysis = fields.Text("Analysis")
 	# recommendation_measure_ids = fields.One2many('bsc.recommendation','recommendation_measure_ids')
 	measure_data_measure_ids = fields.One2many('bsc.measuredata','measure_data_measure_ids')
@@ -111,19 +111,19 @@ class Initiative(models.Model):
 	_inherit = 'mail.thread'
 	_rec_name = 'title'
 
-	title = fields.Char("Title", required=True)
+	title = fields.Char("Title", required=True, track_visibility='onchange')
 	initiative_bsc_ids = fields.Many2one('bsc.bsc',"BSC")
 	owner = fields.Many2one('res.users',
 		string= "Owner",
 		default=lambda self: self.env.uid)
 	collaborator_ids = fields.Many2many('res.users','bsc_initiative_res_users_rel', string="Collaborators")
-	budget = fields.Float("Budget", trach_visibility='onchange')
+	budget = fields.Float("Budget", track_visibility='onchange')
 	description = fields.Text("Description")
-	percent_complete = fields.Float("Percent Complete", compute="_get_percent_complete")
+	percent_complete = fields.Float("Percent Complete", compute="_get_percent_complete", track_visibility='always')
 	analysis = fields.Text("Analysis")
 	# recommendation_initiative_ids = fields.One2many('bsc.recommendation','recommendation_initiative_ids')
-	start_date = fields.Date("Start Date")
-	end_date = fields.Date("End Date")
+	start_date = fields.Date("Start Date", track_visibility='onchange')
+	end_date = fields.Date("End Date", track_visibility='onchange')
 	complete_status = fields.Boolean("Complete Status")
 	completed_date = fields.Date("Completed Date", compute="_get_completed_date")
 	milestone_initiative_ids = fields.One2many('bsc.milestone','milestone_initiative_ids')
@@ -251,7 +251,8 @@ class Milestone(models.Model):
 		for rec in self:
 			max_time = []
 			for dt in rec.action_milestone_ids:
-				max_time.append(datetime.strptime(dt.end_date, '%Y-%m-%d').date())
+				if dt != None:
+					max_time.append(datetime.strptime(dt.end_date, '%Y-%m-%d').date())
 			if max_time:
 				rec.end_date = max(max_time)
 
@@ -285,10 +286,13 @@ class Action(models.Model):
 			rec.completed_date = date.today()
 			if rec.completed_status == False:
 				rec.completed_status = True
-		if self.end_date < self.completed_date:
-			rec.write({'state': 'missed'})
+		if self.end_date:
+			if self.end_date < self.completed_date:
+				rec.write({'state': 'missed'})
+			else:
+				rec.write({'state': 'completed'})
 		else:
-			rec.write({'state': 'completed'})
+			raise UserError("No End date defined")
 		return True
 
 	def reset_complete(self):
