@@ -130,8 +130,22 @@
         <field name="res_model">bsc.bsc</field>
         <field name="view_type">form</field>
         <field name="view_mode">kanban,tree,form</field>
+        <!-- <field name="context">
+          {'group_by': 'category'}
+        </field> -->
         <!-- <field name="view_id" eval="view_holiday_status_normal_tree"/> -->
-        <!-- <field name="search_view_id" ref="view_bsc_objective_filter"/> -->
+        <!-- <field name="search_view_id" ref="view_bsc_bsc_filter"/> -->
+    </record>
+
+    <record id="bsc_bsc_filter_label" model="ir.ui.view">
+      <field name="name">BSC Filter</field>
+      <field name="model">bsc.bsc</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="category"/>
+          <filter name="bsc_category" string="Category" context="{'group_by':'category'}"/>
+        </search>
+      </field>
     </record>
     
 
