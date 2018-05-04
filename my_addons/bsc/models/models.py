@@ -43,6 +43,8 @@ class Bsc(models.Model):
 	meas_count = fields.Integer("Count Measure", compute="_measures_count")
 	init_count = fields.Integer("Count Initiatives", compute="_initiatives_count")
 
+	active = fields.Boolean(default=True)
+
 	_sql_constraints = [
 		('name_uniq', 'unique(name)', 'BSC name must be unique'),
 	]
