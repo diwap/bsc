@@ -10,7 +10,7 @@ STATES = [
 	('missed', 'Deadline Missed')
 ]
 
-class Person:
+class CheckDate:
 	def __init__(self, d1, d2):
 		self.d1 = d1
 		self.d2 = d2
@@ -117,7 +117,7 @@ class Initiative(models.Model):
 		string= "Owner",
 		default=lambda self: self.env.uid)
 	collaborator_ids = fields.Many2many('res.users','bsc_initiative_res_users_rel', string="Collaborators")
-	budget = fields.Float("Budget")
+	budget = fields.Float("Budget", trach_visibility='onchange')
 	description = fields.Text("Description")
 	percent_complete = fields.Float("Percent Complete", compute="_get_percent_complete")
 	analysis = fields.Text("Analysis")
@@ -130,6 +130,12 @@ class Initiative(models.Model):
 	# action_initiative_ids = fields.One2many('bsc.action','action_initiative_ids')
 
 	state = fields.Selection(STATES, string='Completed Status', default='initial', readonly=True, index=True)
+
+	@api.onchange('budget')
+	def _validate_budget(self):
+		for rec in self:
+			if rec.budget < 0:
+				rec.budget = 0
 
 	def _get_percent_complete(self):
 		for rec in self:
@@ -145,7 +151,7 @@ class Initiative(models.Model):
 	@api.onchange('end_date')
 	def _check_date(self):
 		for rec in self:
-			ndate = Person(rec.start_date, rec.end_date)
+			ndate = CheckDate(rec.start_date, rec.end_date)
 			return ndate.check_date()
 
 	def _get_completed_date(self):
@@ -180,8 +186,18 @@ class MeasureData(models.Model):
 
 	def _get_variance(self):
 		for val in self:
-			val.variance =  (val.actual - val.target)/abs(val.target)*100
+			try:
+				val.variance =  (val.actual - val.target)/abs(val.target)*100
+			except ZeroDivisionError:
+				val.variance = 0
 
+	@api.onchange('target','actual')
+	def _validate_price(self):
+		for rec in self:
+			if rec.target < 0:
+				rec.target = 0
+			if rec.actual < 0:
+				rec.actual = 0
 
 class Milestone(models.Model):
 	_name = 'bsc.milestone'
@@ -263,7 +279,7 @@ class Action(models.Model):
 	@api.onchange('end_date')
 	def _check_date(self):
 		for rec in self:
-			ndate = Person(rec.start_date, rec.end_date)
+			ndate = CheckDate(rec.start_date, rec.end_date)
 			return ndate.check_date()
 
 	def toggle_status(self):

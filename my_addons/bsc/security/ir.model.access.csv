@@ -10,7 +10,7 @@ access_bsc_initiative_user,bsc.initiative,model_bsc_initiative,bsc.group_bsc_bsc
 access_bsc_measuredata_manager,bsc.measuredata,model_bsc_measuredata,bsc.group_bsc_bsc_manager,1,1,1,1
 access_bsc_measuredata_user,bsc.measuredata,model_bsc_measuredata,bsc.group_bsc_bsc_user,1,0,1,0
 access_bsc_milestone_manager,bsc.milestone,model_bsc_milestone,bsc.group_bsc_bsc_manager,1,1,1,1
-access_bsc_milestone_user,bsc.milestone,model_bsc_milestone,bsc.group_bsc_bsc_user,1,0,1,0
+access_bsc_milestone_user,bsc.milestone,model_bsc_milestone,bsc.group_bsc_bsc_user,1,1,1,1
 access_bsc_action_manager,bsc.action,model_bsc_action,bsc.group_bsc_bsc_manager,1,1,1,1
 access_bsc_action_user,bsc.action,model_bsc_action,bsc.group_bsc_bsc_user,1,0,1,0
 access_bsc_dashboard_manager,bsc.dashboard,model_bsc_dashboard,bsc.group_bsc_bsc_manager,1,1,1,1
