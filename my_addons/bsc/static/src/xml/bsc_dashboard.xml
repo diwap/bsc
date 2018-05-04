@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-3">
                             <button type="button" class="list-group-item list-group-item-success">
-                                <span><t t-esc = 'name'/></span>
+                                <span><t t-esc = 'name'/> - <i><t t-esc= 'category'/></i></span>
                             </button>
                         </div>
                         <div class="col-md-3 col-sm-3">
