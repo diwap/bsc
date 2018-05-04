@@ -51,7 +51,15 @@
                         </group>
                         <notebook>
                             <page string="Action">
-                                <field name="action_milestone_ids" context="{'form_view_ref': 'bsc.bsc_form_action_milestone', 'default_action_milestone_ids': id}"/>
+                                <field name="action_milestone_ids" context="{'form_view_ref': 'bsc.bsc_form_action_milestone', 'default_action_milestone_ids': id}">
+                                    <tree create="true" edit="true">
+                                        <field name="name"/>
+                                        <field name="owner"/>
+                                        <field name="start_date"/>
+                                        <field name="end_date"/>
+                                        <field name="description"/>
+                                    </tree>
+                                </field>
                             </page>
                         </notebook>
                     </sheet>
@@ -93,7 +101,7 @@
                         <notebook>
                             <page string="Action">
                                 <field name="action_milestone_ids" context="{'form_view_ref': 'bsc.bsc_form_action_milestone', 'default_action_milestone_ids': id}">
-                                    <tree create="false" edit="false">
+                                    <tree editable="true">
                                         <field name="name"/>
                                         <field name="owner"/>
                                         <field name="start_date"/>
@@ -185,7 +193,6 @@
             <field name="res_model">bsc.milestone</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <!-- <field name="view_id" eval="bsc_form_action"/> -->
             <field name="search_view_id" ref="view_bsc_milestone_filter"/>
         </record>
         <menuitem id="menu_bsc_milestone"
