@@ -2,30 +2,38 @@
 <templates xml:space="preserve">
     <t t-name="BscDashboardTemplate">
         <div class="bsc_dashboard_home_page">
+            <h1>BSC View</h1>
             <div class="list-group">
-                <t t-foreach = 'list' t-as='l'>
+                <t t-foreach = 'bsc' t-as='l'>
                     <div class="row">
                         <div class="col-md-3 col-sm-3">
-                            <button type="button" class="list-group-item">
+                            <button type="button" class="list-group-item list-group-item-success">
                                 <span><t t-esc = 'name'/></span>
                             </button>
                         </div>
                         <div class="col-md-3 col-sm-3">
                             <t t-foreach = 'objectives' t-as='o'>
-                                <button type="button" class="list-group-item">
-                                    <span><t t-esc = 'name'/></span>
+                                <button type="button" class="list-group-item list-group-item-info">
+                                    <span><t t-esc = 'o.name'/></span>
                                 </button>
                             </t>
                         </div>
-                        <!-- <div class="col-md-4">
-                            <div class="list-group">
-                                <t t-foreach = 'list'>
-                            </div>
-                        </div> -->
-                        <!-- <li>
-                            <span t-att-data-path='l.path'><t t-esc = 'category'/></span>
-                        </li> -->
+                        <div class="col-md-3 col-sm-3">
+                            <t t-foreach = 'measure' t-as='m'>
+                                <button type="button" class="list-group-item list-group-item-warning">
+                                    <span><t t-esc = 'm.title'/></span>
+                                </button>
+                            </t>
+                        </div>
+                        <div class="col-md-3 col-sm-3">
+                            <t t-foreach = 'initiative' t-as='i'>
+                                <button type="button" class="list-group-item list-group-item-default">
+                                    <span><t t-esc = 'i.title'/></span>
+                                </button>
+                            </t>
+                        </div>
                     </div>
+                    <hr/>
                 </t>
             </div>
         </div>
