@@ -39,7 +39,7 @@ fi
 sleep 2s
 
 #check and open browser if not
-URL=localhost:8069/web
+URL=localhost:8070/web
 if ps -e | grep ${BROWSER}
 then
     echo "Reloading your active window"
