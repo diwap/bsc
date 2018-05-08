@@ -15,7 +15,7 @@
         </record>
 
         <!-- BSC measure form view -->
-        <record model="ir.ui.view" id="bsc_form_contact">
+        <record model="ir.ui.view" id="bsc_form_measure">
             <field name="name">BSC Measure</field>
             <field name="model">bsc.measure</field>
             <field name="arch" type="xml">
@@ -36,7 +36,7 @@
                         </group>
                         <group>
                             <field name="collaborator_ids" widget="many2many_tags"/>
-                            <field name="analysis"/>
+                            <field name="analysis" readonly="True"/>
                             <field name="description"/>
                         </group>
                         <!-- notebook is used to show in tab panels -->
@@ -76,6 +76,17 @@
                         <filter name="group_owner" string="Owner" context="{'group_by':'owner'}"/>
                     </group>
                 </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_bsc_measure_form_inherited">
+            <field name="model">bsc.measure</field>
+            <field name="inherit_id" ref="bsc.bsc_form_measure"/>
+            <field name="groups_id" eval="[(6,0, [ref('bsc.group_bsc_bsc_manager')])]"/>
+            <field name="arch" type="xml">
+                <field name="analysis" position="attributes">
+                    <attribute name="readonly">False</attribute>
+                </field>
             </field>
         </record>
 
