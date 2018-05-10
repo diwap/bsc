@@ -132,6 +132,19 @@
             </field>
         </record>
 
+        <!-- BSC action calendar -->
+        <record id="view_bsc_action_calendar" model="ir.ui.view">
+            <field name="name">bsc.action.calendar</field>
+            <field name="model">bsc.action</field>
+            <field name="arch" type="xml">
+                <calendar string="BSC Action" date_start="start_date" date_stop="end_date" date_delay="completed_date" event_open_popup="true" color="owner">
+                    <field name="name"/>
+                    <field name="owner"/>
+                    <field name="completed_date"/>
+                </calendar>
+            </field>
+        </record>
+
         <!-- BSC action filter -->
         <record id="view_bsc_action_filter" model="ir.ui.view">
             <field name="name">bsc.action.filter</field>
@@ -163,7 +176,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">bsc.action</field>
             <field name="view_type">form</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">calendar,tree,form</field>
             <field name="search_view_id" ref="view_bsc_action_filter"/>
         </record>
 
