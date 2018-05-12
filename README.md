@@ -15,6 +15,9 @@ Every team or organization have vision and mission to execute in certain time. T
 Strategy Management approach in Nepal is still based on management of manufacturing and financial scores. However, international business has already gone to information age before 15 years which is making harder for Nepali business organization to compete and Balanced scorecard is one of the step to jump towards information era.
 
 ## Installation
+
+[![asciicast](https://asciinema.org/a/TQng7nQpopNfSle1lHs67bSbH.png)](https://asciinema.org/a/TQng7nQpopNfSle1lHs67bSbH)
+
 Your first step is to download and install docker from [here.](https://www.docker.com/get-docker)
 #### Or
 Go to docker [playground](https://labs.play-with-docker.com)
