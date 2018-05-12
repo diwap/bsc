@@ -16,7 +16,7 @@ Strategy Management approach in Nepal is still based on management of manufactur
 
 ## Installation
 
-[![asciicast](https://asciinema.org/a/TQng7nQpopNfSle1lHs67bSbH.png)](https://asciinema.org/a/TQng7nQpopNfSle1lHs67bSbH)
+<a href="https://asciinema.org/a/TQng7nQpopNfSle1lHs67bSbH?autoplay=1" target="_blank">![asciicast](https://asciinema.org/a/TQng7nQpopNfSle1lHs67bSbH.png)</a>
 
 Your first step is to download and install docker from [here.](https://www.docker.com/get-docker)
 #### Or
