@@ -6,9 +6,12 @@
         Strategic Planning and Management System""",
 
     'description': """
-        BSC refers to Balance Score Card. The balanced scorecard is a strategy performance management tool – a semi-standard structured report,
-        supported by design methods and automation tools, that can be used by managers to keep track of the execution of activities by the 
-        staff within their control and to monitor the consequences arising from these actions.
+        BSC refers to Balance Score Card. The balanced scorecard is a strategy
+        performance management tool – a semi-standard structured report,
+        supported by design methods and automation tools, that can be used by
+        managers to keep track of the execution of activities by the
+        staff within their control and to monitor the consequences arising
+        from these actions.
     """,
 
     'author': "Diwakar Pandey",
@@ -16,7 +19,7 @@
     'category': 'management',
     'version': '11.1',
     'application': True,
-    'depends': ['base','mail'],
+    'depends': ['base', 'mail'],
 
     'data': [
         'security/bsc_security.xml',

@@ -9,9 +9,10 @@ and bsc.initiative keeping the relation as it is.
 from odoo import models, fields, api
 
 # ------------------------------
-# BSC Dashmoard class to search 
+# BSC Dashmoard class to search
 # record
 # ------------------------------
+
 
 class BscDashboard(models.Model):
     _name = "bsc.dashboard"
@@ -23,7 +24,7 @@ class BscDashboard(models.Model):
         using relational field. Append data in data
         list which is returned at last.
         """
-        bsc = self.env['bsc.bsc'].search([('active','=',True)])
+        bsc = self.env['bsc.bsc'].search([('active', '=', True)])
         data = []
         for d in bsc:
             data.append({
