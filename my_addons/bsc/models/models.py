@@ -42,10 +42,7 @@ class CheckDate:
 		if self.d1 and self.d2:
 			if self.d1 > self.d2:
 				raise ValidationError(
-					"Your start date is greater than end date.\n
-					Start Date: % s \n
-					End Date: % s
-					" % (self.d1, self.d2)
+					"Your start date is greater than end date.\n Start Date: % s \nEnd Date: % s" % (self.d1, self.d2)
 				)
 
 # ----------------------------
